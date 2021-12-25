@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node ./bin/www.js",
     "dev": " nodemon -r dotenv/config ./bin/www.js",
-    "createRatingTable": "nodemon -r dotenv/config.js ../db/createRatingsAndMenuTable.js",
-    "createRestaurantDetails": "nodemon -r dotenv/config.js ../db/createRestaurantDetails.js"
+    "createRatingTable": "nodemon -r dotenv/config.js ./db/scripts/createRatingsAndMenuTable.js",
+    "createRestaurantDetails": "nodemon -r dotenv/config.js ./db/scripts/createRestaurantDetails.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
