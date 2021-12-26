@@ -14,4 +14,4 @@ const pool = new pg.Pool({
 // function created to query the database
 export default async function query(text, params) {
   return pool.query(text, params);
-}
+} 
