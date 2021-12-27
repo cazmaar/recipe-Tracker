@@ -2,7 +2,9 @@ import query from "../db/index.js";
 
 // function to get all restaurants in the database
 export async function getAllRestaurants() {
-  const res = await query("SELECT * FROM restaurants_details  ");
+  const res = await query(
+    `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings`
+  );
   return res.rows;
 }
 
@@ -22,49 +24,49 @@ export async function getRestaurantsByQuery(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings WHERE date ILIKE '%'||$1||'%'`,
       [date]
     );
-    console.log(res);
+    return res.rows;
   } else if (restaurantname !== undefined) {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings on id = id_ratings WHERE restaurant_name ILIKE '%'||$1||'%'`,
       [restaurantname]
     );
-    console.log(res);
+    return res.rows;
   } else if (location !== undefined) {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings on id = id_ratings WHERE location ILIKE '%'||$1||'%'`,
       [location]
     );
-    console.log(res.rows);
+    return res.rows;
   } else if (year !== undefined) {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings WHERE year = $1`,
       [year]
     );
-    console.log(res.rows);
+    return res.rows;
   } else if (month !== undefined) {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings on id = id_ratings WHERE month ILIKE '%'||$1||'%'`,
       [month]
     );
-    console.log(res.rows);
+    return res.rows;
   } else if (ratings !== undefined) {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings on id = id_ratings WHERE restaurant_rating = $1`,
       [ratings]
     );
-    console.log(res.rows);
+    return res.rows;
   } else if (menu !== undefined) {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings on id = id_ratings WHERE menu ILIKE '%'||$1||'%'`,
       [menu]
     );
-    console.log(res.rows);
+    return res.rows;
   } else {
     const res = await query(
       `SELECT * FROM restaurants_details JOIN restaurants_ratings on id = id_ratings WHERE amount_spent = $1`,
       [amountspent]
     );
-    console.log(res.rows);
+    return res.rows;
   }
 }
 
@@ -84,7 +86,7 @@ export async function createRestaurantDetails(body) {
     ` INSERT INTO restaurants_details(date, restaurant_name,location,year,month) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
     [date, name, location, year, month]
   );
-  console.log(res);
+ return res.rows;
 }
 
 // This function handles the post request to the restaurant ratings table
