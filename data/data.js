@@ -115,7 +115,7 @@ export const restaurant_details = [
 ("CREATE TABLE IF NOT EXISTS restaurants_details (id SERIAL PRIMARY KEY, date DATE, restaurant_name TEXT, location TEXT, year INT, month TEXT)");
 
 ("CREATE TABLE IF NOT EXISTS restaurants_ratings (id_ratings SERIAL PRIMARY KEY, menu TEXT, amount_spent INT, restaurant_rating INT) ");
-const restaurantRating = [
+export const restaurantRating = [
   { menu: "wwwwwwwwwwwwwwwwww", amount_spent: 80, restaurant_rating: 5 },
   { menu: "ww222234567", amount_spent: 70, restaurant_rating: 4 },
   { menu: "wwwrtedyfg", amount_spent: 80, restaurant_rating: 3 },

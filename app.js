@@ -1,21 +1,22 @@
 import express from "express";
-import path from "path";
+// import path from "path";
 
-import __dirname from "./dirname.js";
-import cookieParser from "cookie-parser";
+// import __dirname from "./dirname.js";
+// 
+
 import cors from "cors";
 // import logger  from 'morgan';
 
-import router from "./routes/users.js";
+import router from "./routes/route1.js";
 
 const app = express();
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/restaurants", router);
 
