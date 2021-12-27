@@ -4,7 +4,7 @@ import express from "express";
 // import __dirname from "./dirname.js";
 // 
 
-// import cors from "cors";
+import cors from "cors";
 // import logger  from 'morgan';
 
 import router from "./routes/route1.js";
@@ -12,7 +12,7 @@ import router from "./routes/route1.js";
 const app = express();
 
 // app.use(logger("dev"));
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
