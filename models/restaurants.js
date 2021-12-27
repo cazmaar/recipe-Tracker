@@ -96,5 +96,6 @@ export async function createRestaurantRating(body) {
     `INSERT INTO restaurants_ratings (menu, amount_spent,restaurant_rating) VALUES($1,$2,$3) RETURNING *`,
     [menu, amountSpent, restaurantRating]
   );
-  console.log(res.rows);
+  return res.rows;
 }
+

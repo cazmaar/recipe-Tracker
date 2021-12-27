@@ -6,6 +6,7 @@ import {
   getRestaurantsById,
   getRestaurantsByQuery,
   createRestaurantDetails,
+  createRestaurantRating,
 } from "../models/restaurants.js";
 
 const router = express.Router();
@@ -74,11 +75,29 @@ router.get("/:id", async function (req, res) {
     payload: restaurantById,
   });
 });
+
 // This handles post request to the restaurants details table.
 router.post("/", async (req, res) => {
-  const body = req.body;
-  const created = await createRestaurantDetails(body);
-  console.log(created)
-  res.json({ success: true, payload: created });
+  // destructures the parameters from the req.body object.
+  const { menu, amountSpent, restaurantRating } = req.body;
+
+  // checks if the parameters destructured actually exist.
+  if (
+    menu !== undefined &&
+    amountSpent !== undefined &&
+    restaurantRating !== undefined
+  )
+  // if the parameters exist it creates a new restaurant restaurant rating table.
+  {
+    const body = req.body;
+    const created = await createRestaurantRating(body);
+    res.json({ success: true, payload: created });
+  } 
+  // this creates a new restaurant in the restaurant details table.
+  else {
+    const body = req.body;
+    const created = await createRestaurantDetails(body);
+    res.json({ success: true, payload: created });
+  }
 });
 export default router;
