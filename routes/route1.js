@@ -1,9 +1,12 @@
 import express from "express";
+
+import { getAllRestaurants } from "../models/restaurants.js";
+
 const router = express.Router();
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.json({ message: "I wish we had some information to give you ☹️" });
+router.get("/", async function (req, res) {
+  const allRestaurant = await getAllRestaurants();
+  res.json({ success: true, payload: getAllRestaurants });
 });
 
 export default router;

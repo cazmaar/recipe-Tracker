@@ -1,14 +1,13 @@
 import query from "../db/index.js";
 
 // function to get all restaurants in the database
-async function getAllRestaurants() {
+export async function getAllRestaurants() {
   const res = await query("SELECT * FROM restaurants_details  ");
-  console.log(res);
+  return res.rows;
 }
 
-getAllRestaurants();
-
-async function getRestaurantsByQuery(
+// This function get information from the database based on the query given.
+export async function getRestaurantsByQuery(
   date,
   restaurantname,
   location,
@@ -69,24 +68,31 @@ async function getRestaurantsByQuery(
   }
 }
 
-getRestaurantsByQuery(
-  undefined,
-  undefined,
-  undefined,
-  2021,
-  "june",
-  1,
-  "ww",
-  90
-);
-
 // function to get all restaurants in the database by id
-async function getRestaurantsById(id) {
+export async function getRestaurantsById(id) {
   const res = await query(
-    "SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings WHERE id = $1",
+    `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings WHERE id = $1`,
     [id]
   );
   console.log(res.rows);
 }
 
-getRestaurantsById(9);
+// // This function handles the post request to the restaurants details table.
+export async function createRestaurantDetails(body) {
+  const { date, name, location, year, month } = body;
+  const res = await query(
+    ` INSERT INTO restaurants_details(date, restaurant_name,location,year,month) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
+    [date, name, location, year, month]
+  );
+  console.log(res);
+}
+
+// This function handles the post request to the restaurant ratings table
+export async function createRestaurantRating(body) {
+  const { menu, amountSpent, restaurantRating } = body;
+  const res = await query(
+    `INSERT INTO restaurants_ratings (menu, amount_spent,restaurant_rating) VALUES($1,$2,$3) RETURNING *`,
+    [menu, amountSpent, restaurantRating]
+  );
+  console.log(res.rows);
+}
