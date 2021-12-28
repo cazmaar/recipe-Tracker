@@ -11,10 +11,6 @@
   --secondarycolor: rgba(63, 63, 63, 0.1);
 }
 
-body {
-  max-width: 375px;
-}
-
 .nav-bar-section {
   display: flex;
   justify-content: space-between;
@@ -22,7 +18,6 @@ body {
   height: 2rem;
   width: 100%;
   border-bottom: 2px solid black;
-  z-index: 1;
 }
 
 .left-nav {
@@ -55,6 +50,8 @@ body {
 
 .restaurant-image1 {
   border-bottom: 2px solid black;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .recentandtoprated {
@@ -63,15 +60,10 @@ body {
   background-color: var(--secondarycolor);
   height: 8rem;
   justify-content: space-between;
-  margin-top: 0;
 }
 
-.recent-section {
-  padding-right: 3rem;
-  border: 2px solid var(--secondarycolor);
-}
-
-.top-rated-section {
+.recentandtop {
+  text-align: center;
   padding-right: 3rem;
   border: 2px solid var(--secondarycolor);
 }
@@ -87,7 +79,7 @@ body {
 
 .inputfield-heading {
   text-align: center;
-  margin-top: 0,2rem;
+  margin-top: 0, 2rem;
 }
 .inputfield-box {
   display: grid;
@@ -99,9 +91,7 @@ body {
 .inputfield {
   width: 10rem;
   margin-bottom: 1rem;
-
 }
-
 
 .inputfield1 {
   font-size: 0.1rem;
@@ -110,10 +100,117 @@ body {
   grid-template-rows: repeat(2, 1fr);
 }
 
-/* #recipes-render-box {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  max-width: 90%;
-  margin: 2rem auto;
-} */
+.calc-section {
+  display: flex;
+}
+.calc-section1 {
+  height: 10rem;
+  background-color: var(--secondarycolor);
+  width: 14rem;
+  text-align: center;
+  border: 2px solid black;
+}
+
+@media screen and (min-width: 667px) {
+  .nav-bar-section {
+    height: 4rem;
+    align-items: center;
+    border-bottom: 2px solid black;
+  }
+
+  .left-nav {
+    margin-left: 4rem;
+  }
+
+  #item1 {
+    padding: 0.2rem;
+    margin-right: 1rem;
+  }
+
+  #item2 {
+    padding: 0.2rem;
+  }
+
+  .right-nav {
+    margin-right: 4rem;
+  }
+  #item3 {
+    padding: 0.2rem;
+    margin-right: 1rem;
+  }
+
+  #item4 {
+    padding: 0.2rem;
+  }
+  .recentandtoprated {
+    font-size: 0.8rem;
+    height: 12rem;
+    justify-content: space-between;
+  }
+
+  .recentandtop {
+    text-align: center;
+    border: 2px solid var(--secondarycolor);
+    padding-left: 4rem;
+  }
+
+  .text1 {
+    text-align: center;
+    height: 7rem;
+    padding-top: 1rem;
+  }
+  .percentage-text {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-fieldsection {
+    background-color: var(--secondarycolor);
+    border: 2px solid black;
+    height: 25rem;
+  }
+
+  .inputfield-heading {
+    margin-top: 2.5rem;
+  }
+
+  .inputfield-box {
+    margin-left: 5rem;
+  }
+
+  .inputfield {
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .inputlabel {
+    font-size: 1.5rem;
+  }
+
+    div .submit-button {
+    width: 5.5rem;
+    height: 2rem;
+    display: flex;
+    margin-left: 15rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    
+  }
+
+  .calc-section {
+    display: flex;
+    height: 15rem;
+    background-color: var(--secondarycolor);
+  }
+  .calc-section1 {
+    width: 100%;
+    height: 15rem;
+    text-align: center;
+    border: 2px solid black;
+    padding-top: 2rem;
+  }
+
+
+}
