@@ -71,6 +71,9 @@
 .text1 {
   background-color: var(--primarycolor);
   border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .input-fieldsection {
   background-color: var(--secondarycolor);
@@ -79,25 +82,18 @@
 
 .inputfield-heading {
   text-align: center;
-  margin-top: 0, 2rem;
+  margin-top: 2rem;
 }
 .inputfield-box {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  margin: 0.5rem;
+  grid-gap: 0.2rem;
 }
 
 .inputfield {
   width: 10rem;
   margin-bottom: 1rem;
-}
-
-.inputfield1 {
-  font-size: 0.1rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
 }
 
 .calc-section {
@@ -187,7 +183,7 @@
     font-size: 1.5rem;
   }
 
-    div .submit-button {
+  div .submit-button {
     width: 5.5rem;
     height: 2rem;
     display: flex;
@@ -196,7 +192,6 @@
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     text-align: center;
-    
   }
 
   .calc-section {
@@ -211,6 +206,213 @@
     border: 2px solid black;
     padding-top: 2rem;
   }
+}
 
+@media screen and (min-width: 768px) {
+  .nav-bar-section {
+    height: 4rem;
+    align-items: center;
+    border-bottom: 2px solid black;
+  }
 
+  .left-nav {
+    margin-left: 4rem;
+  }
+
+  #item1 {
+    padding: 0.2rem;
+    margin-right: 1rem;
+  }
+
+  #item2 {
+    padding: 0.2rem;
+  }
+
+  .right-nav {
+    margin-right: 4rem;
+  }
+  #item3 {
+    padding: 0.2rem;
+    margin-right: 1rem;
+  }
+
+  #item4 {
+    padding: 0.2rem;
+  }
+  .recentandtoprated {
+    font-size: 0.8rem;
+    height: 12rem;
+    justify-content: space-between;
+  }
+
+  .recentandtop {
+    text-align: center;
+    border: 2px solid var(--secondarycolor);
+    padding-left: 4rem;
+  }
+
+  .text1 {
+    text-align: center;
+    height: 7rem;
+    padding-top: 1rem;
+  }
+  .percentage-text {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-fieldsection {
+    background-color: var(--secondarycolor);
+    border: 2px solid black;
+    height: 25rem;
+  }
+
+  .inputfield-heading {
+    margin-top: 2.5rem;
+  }
+
+  .inputfield-box {
+    margin-left: 15rem;
+  }
+
+  .inputfield {
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .inputlabel {
+    font-size: 1.5rem;
+  }
+
+  div .submit-button {
+    width: 5.5rem;
+    height: 2rem;
+    display: flex;
+    margin-left: 15rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .calc-section {
+    display: flex;
+    height: 15rem;
+    background-color: var(--secondarycolor);
+  }
+  .calc-section1 {
+    width: 100%;
+    height: 15rem;
+    text-align: center;
+    border: 2px solid black;
+    padding-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 1106px) {
+  .nav-bar-section {
+    height: 4rem;
+    align-items: center;
+    border-bottom: 2px solid black;
+  }
+
+  .left-nav {
+    margin-left: 4rem;
+  }
+
+  #item1 {
+    padding: 0.2rem;
+    margin-right: 1rem;
+  }
+
+  #item2 {
+    padding: 0.2rem;
+  }
+
+  .right-nav {
+    margin-right: 4rem;
+  }
+  #item3 {
+    padding: 0.2rem;
+    margin-right: 1rem;
+  }
+
+  #item4 {
+    padding: 0.2rem;
+  }
+  .restaurant-image1 {
+    height: 40rem;
+  }
+  .recentandtoprated {
+    font-size: 0.8rem;
+    height: 25rem;
+    justify-content: space-around;
+  }
+
+  .recentandtop {
+    text-align: center;
+    border: none;
+    padding-left: 4rem;
+    margin-top: 3rem;
+  }
+
+  .text1 {
+    height: 13rem;
+    padding-top: 1rem;
+  }
+  .percentage-text {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-fieldsection {
+    background-color: var(--secondarycolor);
+    border: 2px solid black;
+    height: 25rem;
+  }
+
+  .inputfield-heading {
+    margin-top: 2.5rem;
+  }
+
+  .inputfield-box {
+    margin-left: 18rem;
+  }
+
+  .inputfield {
+    width: 17rem;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .inputlabel {
+    font-size: 1.5rem;
+  }
+
+  div .submit-button {
+    width: 5.5rem;
+    height: 2rem;
+    display: flex;
+    margin-left: 25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .calc-section {
+    display: flex;
+    height: 25rem;
+    background-color: var(--secondarycolor);
+  }
+  .calc-section1 {
+    width: 100%;
+    height: 25rem;
+    text-align: center;
+    border: 2px solid black;
+    padding-top: 2rem;
+  }
+
+  .months {
+    margin-top: 1.5rem;
+  }
 }
