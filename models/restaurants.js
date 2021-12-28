@@ -98,4 +98,3 @@ export async function createRestaurantRating(body) {
   );
   return res.rows;
 }
-

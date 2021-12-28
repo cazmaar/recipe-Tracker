@@ -6,8 +6,114 @@
   box-sizing: border-box;
 }
 
-.nav-bar {
-  border-bottom: 0.1rem solid;
+:root {
+  --primarycolor: rgba(255, 255, 255, 1);
+  --secondarycolor: rgba(63, 63, 63, 0.1);
+}
+
+body {
+  max-width: 375px;
+}
+
+.nav-bar-section {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  height: 2rem;
+  width: 100%;
+  border-bottom: 2px solid black;
+  z-index: 1;
+}
+
+.left-nav {
+  display: flex;
+}
+
+#item1 {
+  padding: 0.2rem;
+}
+
+#item2 {
+  padding: 0.2rem;
+}
+
+.right-nav {
+  display: flex;
+}
+
+#item3 {
+  padding: 0.2rem;
+}
+
+#item4 {
+  padding: 0.2rem;
+}
+
+.new-restaurant-images {
+  width: 100%;
+}
+
+.restaurant-image1 {
+  border-bottom: 2px solid black;
+}
+
+.recentandtoprated {
+  display: flex;
+  font-size: 0.5rem;
+  background-color: var(--secondarycolor);
+  height: 8rem;
+  justify-content: space-between;
+  margin-top: 0;
+}
+
+.recent-section {
+  padding-right: 3rem;
+  border: 2px solid var(--secondarycolor);
+}
+
+.top-rated-section {
+  padding-right: 3rem;
+  border: 2px solid var(--secondarycolor);
+}
+
+.text1 {
+  background-color: var(--primarycolor);
+  border: 2px solid blue;
+}
+.input-fieldsection {
+  background-color: var(--secondarycolor);
+  border: 2px solid black;
+}
+
+.inputfield-heading {
+  text-align: center;
+  margin-top: 0,2rem;
+}
+.inputfield-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  margin: 0.5rem;
+}
+
+.inputfield {
+  width: 10rem;
+  margin-bottom: 1rem;
+
 }
 
 
+.inputfield1 {
+  font-size: 0.1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+/* #recipes-render-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  max-width: 90%;
+  margin: 2rem auto;
+} */
