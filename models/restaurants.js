@@ -1,11 +1,13 @@
 import query from "../db/index.js";
+import moment from "moment";
 
 // function to get all restaurants in the database
 export async function getAllRestaurants() {
   const res = await query(
     `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings`
   );
-  return res.rows;
+  const response = res.rows;
+  return response;
 }
 
 // This function get information from the database based on the query given.
@@ -81,12 +83,13 @@ export async function getRestaurantsById(id) {
 
 // // This function handles the post request to the restaurants details table.
 export async function createRestaurantDetails(body) {
-  const { date, name, location, year, month } = body;
+  const { date, nameV, location, year, month } = body;
+  console.log(body);
   const res = await query(
     ` INSERT INTO restaurants_details(date, restaurant_name,location,year,month) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
-    [date, name, location, year, month]
+    [date, nameV, location, year, month]
   );
- return res.rows;
+  return res.rows;
 }
 
 // This function handles the post request to the restaurant ratings table

@@ -1,4 +1,5 @@
-import { sortByRatings } from "./main.js";
+
+import { sortByRatings, convertDate } from "./main.js";
 
 it("Should return recently visited restaurants sorted by highest to lowest ratings.", () => {
   //Arrange
@@ -59,10 +60,11 @@ it("Should return recently visited restaurants sorted by highest to lowest ratin
   expect(actual).toStrictEqual(expected);
 });
 
-// it("should return restaurants with rating greater than 3", () => {
-//   const arr = [
+// it("Should return date in this format", () => {
+//   // arrange
+//   const restaurantArray = [
 //     {
-//       mount_spent: 90,
+//       amount_spent: 90,
 //       date: "2020-05-31T23:00:00.000Z",
 //       id: 1,
 //       id_ratings: 1,
@@ -73,46 +75,22 @@ it("Should return recently visited restaurants sorted by highest to lowest ratin
 //       restaurant_rating: 2,
 //       year: 2020,
 //     },
-
-//     {
-//       amount_spent: 80,
-//       date: "2021-06-07T23:00:00.000Z",
-//       id: 2,
-//       id_ratings: 2,
-//       location: "london",
-//       menu: "wwwwwwwwwwwwwwwwww",
-//       month: "june",
-//       restaurant_name: "Nandos",
-//       restaurant_rating: 5,
-//       year: 2021,
-//     },
-//     {
-//       amount_spent: 80,
-//       date: "2021-06-06T23:00:00.000Z",
-//       id: 2,
-//       id_ratings: 3,
-//       location: "london",
-//       menu: "wwwwwwwwwwwwwwwwww",
-//       month: "june",
-//       restaurant_name: "Nandos",
-//       restaurant_rating: 10,
-//       year: 2021,
-//     },
 //   ];
+
 //   const expected = [
 //     {
-//       amount_spent: 80,
-//       date: "2021-06-06T23:00:00.000Z",
-//       id: 2,
-//       id_ratings: 3,
+//       amount_spent: 90,
+//       date: "05/31/20",
+//       id: 1,
+//       id_ratings: 1,
 //       location: "london",
-//       menu: "wwwwwwwwwwwwwwwwww",
+//       menu: "wafsdghjw",
 //       month: "june",
-//       restaurant_name: "Nandos",
-//       restaurant_rating: 10,
-//       year: 2021,
+//       restaurant_name: "Mr Biggs",
+//       restaurant_rating: 2,
+//       year: 2020,
 //     },
 //   ];
-//   const actual = getTopRatedRestaurant(arr);
+//   const actual = convertDate(restaurantArray);
 //   expect(actual).toStrictEqual(expected);
 // });

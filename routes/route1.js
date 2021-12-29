@@ -78,6 +78,7 @@ router.get("/:id", async function (req, res) {
 
 // This handles post request to the restaurants details table.
 router.post("/", async (req, res) => {
+  
   // destructures the parameters from the req.body object.
   const { menu, amountSpent, restaurantRating } = req.body;
 
@@ -86,13 +87,12 @@ router.post("/", async (req, res) => {
     menu !== undefined &&
     amountSpent !== undefined &&
     restaurantRating !== undefined
-  )
-  // if the parameters exist it creates a new restaurant restaurant rating table.
-  {
+  ) {
+    // if the parameters exist it creates a new restaurant restaurant rating table.
     const body = req.body;
     const created = await createRestaurantRating(body);
     res.json({ success: true, payload: created });
-  } 
+  }
   // this creates a new restaurant in the restaurant details table.
   else {
     const body = req.body;
