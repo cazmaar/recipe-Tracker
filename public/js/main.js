@@ -7,13 +7,13 @@ const locationRest = document.querySelector("#inputlocation");
 const menuRest = document.querySelector("#inputmenu");
 const amountspentRest = document.querySelector("#inputspent");
 const ratingRest = document.querySelector("#inputrating");
+const months = document.querySelector("#months");
 
 let data;
 // // fetches all the restaurant data from the API
 async function getter() {
   const response = await fetch("http://localhost:3000/restaurants");
   data = await response.json();
-  console.log(data);
   sortByRatings(data);
   sortBydate(data);
 }
@@ -69,13 +69,12 @@ function createRecentList(fetchedArray) {
     const li2 = document.createElement("li");
     li2.innerText = `Date: ${item.date}`;
     const li3 = document.createElement("li");
-    li3.innerText = `menu: item.menu`;
+    li3.innerText = `menu: ${item.menu}`;
     recentRestaurants.appendChild(li1);
     recentRestaurants.appendChild(li2);
     recentRestaurants.appendChild(li3);
   });
 }
-getter();
 
 // This function gathers restaurants inputed to be sent into the database.
 async function addRestaurantDetails() {
@@ -115,5 +114,44 @@ function gatherFormRatings() {
   return { menu, amountSpent, restaurantRating };
 }
 
+async function getDataFromAPIByQuery(event) {
+  const monthValue = event.target.value;
+  console.log(monthValue);
+  const responseQuery = await fetch(
+    `http://localhost:3000/restaurants?month=${monthValue}`
+  );
+  dataQuery = await responseQuery.json();
+  createRestMonthList(dataQuery);
+}
+
+function createRestMonthList(dataQuery) {
+  const data = dataQuery.payload;
+  const body = document.body;
+  const calcBackground = document.createElement("div");
+  const miniBackground = document.createElement("div");
+  miniBackground.classList.add("minibg");
+  calcBackground.classList.add("calcbackground");
+  data.forEach((item) => {
+    miniBackground.innerHTML = `<p>${item.location}</p>`;
+  });
+  const docHeight = document.body.clientHeight;
+  calcBackground.style.height = `${docHeight}px`;
+  calcBackground.appendChild(miniBackground);
+  body.appendChild(calcBackground)
+}
+
+months.addEventListener("change", getDataFromAPIByQuery);
+
+getter();
 submitbutton.addEventListener("click", addRestaurantDetails);
 submitbutton.addEventListener("click", addRestaurantRatings);
+
+
+//   recipesArray.forEach(function (recipe) {
+//     if (event.target.parentElement.dataset.id === recipe.name) {
+//       recipe.ingredients.forEach(function (ingredient) {
+//         let li = document.createElement("li");
+//         li.innerText = ingredient;
+//         ingredientsList.appendChild(li);
+//       });
+//     }
