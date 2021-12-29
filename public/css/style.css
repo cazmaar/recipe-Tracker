@@ -412,7 +412,29 @@
     padding-top: 2rem;
   }
 
+  .spent-month {
+    border: 2px solid black;
+    border-radius: 20%;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
   .months {
     margin-top: 1.5rem;
+  }
+  .text-year {
+    margin-top: 2rem;
+  }
+
+  #year {
+    margin-top: 1rem;
+  }
+
+  .topratedrestaurant-list {
+    list-style: none;
+  }
+
+  .restaurantName {
+    font-size: 1.5rem;
   }
 }
