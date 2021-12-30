@@ -8,6 +8,8 @@ const menuRest = document.querySelector("#inputmenu");
 const amountspentRest = document.querySelector("#inputspent");
 const ratingRest = document.querySelector("#inputrating");
 const months = document.querySelector("#months");
+const getListByLocation = document.querySelector("#restaurantlocation");
+const restaurantRating = document.querySelector("#restaurant-rating");
 
 let data;
 // // fetches all the restaurant data from the API
@@ -95,7 +97,7 @@ async function addRestaurantRatings() {
   const data = await response.json();
 }
 
-// function gather form data.
+// This function gather form data to post to the details table.
 function gatherFormData() {
   const date = dateRest.value;
   const nameV = nameRest.value;
@@ -107,6 +109,7 @@ function gatherFormData() {
   };
 }
 
+// This function gather form data to post to the ratings table.
 function gatherFormRatings() {
   const menu = menuRest.value;
   const amountSpent = amountspentRest.value;
@@ -114,6 +117,7 @@ function gatherFormRatings() {
   return { menu, amountSpent, restaurantRating };
 }
 
+// This function gets restaurants based on a particular month by query
 async function getDataFromAPIByQuery(event) {
   const monthValue = event.target.value;
   console.log(monthValue);
@@ -124,34 +128,148 @@ async function getDataFromAPIByQuery(event) {
   createRestMonthList(dataQuery);
 }
 
+// This function creates a list of restaurants visited by month.
 function createRestMonthList(dataQuery) {
   const data = dataQuery.payload;
   const body = document.body;
+  // new elements are created to display the fetched restaurant.
   const calcBackground = document.createElement("div");
   const miniBackground = document.createElement("div");
   miniBackground.classList.add("minibg");
   calcBackground.classList.add("calcbackground");
+  const ul = document.createElement("ul");
+  ul.classList.add("ul");
+  miniBackground.appendChild(ul);
+  console.log(data);
   data.forEach((item) => {
-    miniBackground.innerHTML = `<p>${item.location}</p>`;
+    const li1 = document.createElement("li");
+    li1.innerText = `${item.restaurant_name}`;
+    ul.appendChild(li1);
+    const li2 = document.createElement("li");
+    li2.innerText = `${item.location}`;
+    ul.appendChild(li2);
+    const li3 = document.createElement("li");
+    li3.innerText = `${item.menu}`;
+    ul.appendChild(li3);
+    const li4 = document.createElement("li");
+    li4.innerText = `${item.amount_spent}£`;
+    ul.appendChild(li4);
   });
   const docHeight = document.body.clientHeight;
   calcBackground.style.height = `${docHeight}px`;
   calcBackground.appendChild(miniBackground);
-  body.appendChild(calcBackground)
+  body.appendChild(calcBackground);
+  miniBackground.addEventListener("click", noremove);
 }
 
 months.addEventListener("change", getDataFromAPIByQuery);
-
-getter();
 submitbutton.addEventListener("click", addRestaurantDetails);
 submitbutton.addEventListener("click", addRestaurantRatings);
 
+// This function removes the created background
+function removeCalcBackground() {
+  const calcbackground = document.querySelector(".calcbackground");
+  document.body.removeChild(calcbackground);
+}
+document.body.addEventListener("click", removeCalcBackground);
 
-//   recipesArray.forEach(function (recipe) {
-//     if (event.target.parentElement.dataset.id === recipe.name) {
-//       recipe.ingredients.forEach(function (ingredient) {
-//         let li = document.createElement("li");
-//         li.innerText = ingredient;
-//         ingredientsList.appendChild(li);
-//       });
-//     }
+function noremove(event) {
+  event.stopPropagation();
+}
+getter();
+
+// This function gets you list of restaurant in a particulart location.
+async function getDataFromAPIByLocation(event) {
+  const getListByLocationValue = event.target.value;
+  console.log(getListByLocationValue);
+  const responseQuery = await fetch(
+    `http://localhost:3000/restaurants?location=${getListByLocationValue}`
+  );
+  dataQuery = await responseQuery.json();
+  console.log(dataQuery);
+  createRestLocationList(dataQuery);
+}
+
+// This function creates a list of restaurants visited by location.
+function createRestLocationList(dataQuery) {
+  const data = dataQuery.payload;
+  const body = document.body;
+  // new elements are created to display the fetched restaurant.
+  const calcBackground = document.createElement("div");
+  const miniBackground = document.createElement("div");
+  miniBackground.classList.add("minibg");
+  calcBackground.classList.add("calcbackground");
+  const ul = document.createElement("ul");
+  ul.classList.add("ul");
+  miniBackground.appendChild(ul);
+  console.log(data);
+  data.forEach((item) => {
+    const li1 = document.createElement("li");
+    li1.innerText = `${item.restaurant_name}`;
+    ul.appendChild(li1);
+    const li2 = document.createElement("li");
+    li2.innerText = `${item.date}`;
+    ul.appendChild(li2);
+    const li3 = document.createElement("li");
+    li3.innerText = `${item.menu}`;
+    ul.appendChild(li3);
+    const li4 = document.createElement("li");
+    li4.innerText = `${item.restaurant_rating}`;
+    ul.appendChild(li4);
+  });
+  const docHeight = document.body.clientHeight;
+  calcBackground.style.height = `${docHeight}px`;
+  calcBackground.appendChild(miniBackground);
+  body.appendChild(calcBackground);
+  miniBackground.addEventListener("click", noremove);
+}
+
+getListByLocation.addEventListener("change", getDataFromAPIByLocation);
+
+// This function gets you list of restaurants with a particular rating.
+async function getDataFromAPIByRating(event) {
+  const restaurantRatingValue = event.target.value;
+  console.log(restaurantRatingValue);
+  const responseQuery = await fetch(
+    `http://localhost:3000/restaurants?restaurant_rating=${restaurantRatingValue}`
+  );
+  dataQuery = await responseQuery.json();
+  console.log(dataQuery);
+  createRestRatingList(dataQuery);
+}
+
+// This function displays a list of restaurants found by rating
+function createRestRatingList(dataQuery) {
+  const data = dataQuery.payload;
+  const body = document.body;
+  // new elements are created to display the fetched restaurant.
+  const calcBackground = document.createElement("div");
+  const miniBackground = document.createElement("div");
+  miniBackground.classList.add("minibg");
+  calcBackground.classList.add("calcbackground");
+  const ul = document.createElement("ul");
+  ul.classList.add("ul");
+  miniBackground.appendChild(ul);
+  console.log(data);
+  data.forEach((item) => {
+    const li1 = document.createElement("li");
+    li1.innerText = `${item.restaurant_name}`;
+    ul.appendChild(li1);
+    const li2 = document.createElement("li");
+    li2.innerText = `${item.date}`;
+    ul.appendChild(li2);
+    const li3 = document.createElement("li");
+    li3.innerText = `${item.menu}`;
+    ul.appendChild(li3);
+    const li4 = document.createElement("li");
+    li4.innerText = `${item.location}`;
+    ul.appendChild(li4);
+  });
+  const docHeight = document.body.clientHeight;
+  calcBackground.style.height = `${docHeight}px`;
+  calcBackground.appendChild(miniBackground);
+  body.appendChild(calcBackground);
+  miniBackground.addEventListener("click", noremove);
+}
+
+restaurantRating.addEventListener("change", getDataFromAPIByRating);
