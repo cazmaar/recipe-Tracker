@@ -11,7 +11,7 @@ const months = document.querySelector("#months");
 const getListByLocation = document.querySelector("#restaurantlocation");
 const restaurantRating = document.querySelector("#restaurant-rating");
 
-// // fetches all the restaurant data from the API
+// fetches all the restaurant data from the API
 async function getter() {
   const response = await fetch("http://localhost:3000/restaurants");
   const data = await response.json();
