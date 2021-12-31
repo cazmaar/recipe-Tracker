@@ -11,11 +11,10 @@ const months = document.querySelector("#months");
 const getListByLocation = document.querySelector("#restaurantlocation");
 const restaurantRating = document.querySelector("#restaurant-rating");
 
-let data;
 // // fetches all the restaurant data from the API
 async function getter() {
   const response = await fetch("http://localhost:3000/restaurants");
-  data = await response.json();
+  const data = await response.json();
   sortByRatings(data);
   sortBydate(data);
 }
@@ -36,16 +35,17 @@ function getTopRatedRestaurants(sortedArray) {
   });
 
   topRatedRestaurants.slice(0, 5).forEach((item) => {
+    const eachTopRestaurant = document.createElement("div");
+    eachTopRestaurant.classList.add("eachList");
     const li1 = document.createElement("li");
     li1.classList.add("restaurantName");
-    li1.innerText = item.restaurant_name;
-    const li2 = document.createElement("li");
-    li2.innerText = `location: ${item.location}`;
-    const li3 = document.createElement("li");
-    li3.innerText = `Rating: ${item.restaurant_rating}`;
-    topRestaurants.appendChild(li1);
-    topRestaurants.appendChild(li2);
-    topRestaurants.appendChild(li3);
+    li1.innerText = `${item.restaurant_name}`;
+    const li2 = document.createElement("p");
+    li2.innerText = `Rating: ${item.restaurant_rating}`;
+    eachTopRestaurant.appendChild(li1);
+    eachTopRestaurant.appendChild(li2);
+    topRestaurants.appendChild(eachTopRestaurant);
+    topRestaurants.appendChild(eachTopRestaurant);
   });
 }
 
@@ -65,20 +65,24 @@ function sortBydate(data) {
 // This function creates a new list of recently visited restaurants.
 function createRecentList(fetchedArray) {
   fetchedArray.slice(0, 5).forEach((item) => {
-    // const div = document.createElement("div");
+    const newDate = item.date;
+    const day = newDate.getUTCDate();
+    const month = newDate.getUTCMonth();
+    const year = newDate.getUTCFullYear();
+    item.date = `${day}/${month}/${year}`;
+    const div = document.createElement("div");
+    div.classList.add("eachList");
     const li1 = document.createElement("li");
-    li1.innerText = `Restaurant: ${item.restaurant_name}`;
-    const li2 = document.createElement("li");
-    li2.innerText = `Date: ${item.date}`;
-    const li3 = document.createElement("li");
-    li3.innerText = `menu: ${item.menu}`;
-    recentRestaurants.appendChild(li1);
-    recentRestaurants.appendChild(li2);
-    recentRestaurants.appendChild(li3);
+    li1.innerText = `${item.date} ${item.restaurant_name}`;
+    div.appendChild(li1);
+    const li2 = document.createElement("p");
+    li2.innerText = `menu: ${item.menu}`;
+    div.appendChild(li2);
+    recentRestaurants.appendChild(div);
   });
 }
 
-// This function gathers restaurants inputed to be sent into the database.
+// This function gathers restaurants data inputed inputed to be sent into the database.
 async function addRestaurantDetails() {
   const response = await fetch("http://localhost:3000/restaurants", {
     method: "POST",
@@ -88,6 +92,7 @@ async function addRestaurantDetails() {
   const data = await response.json();
 }
 
+// This function gathers restaurants data inputed inputed to be sent into the database.
 async function addRestaurantRatings() {
   const response = await fetch("http://localhost:3000/restaurants", {
     method: "POST",
@@ -128,9 +133,11 @@ async function getDataFromAPIByQuery(event) {
   createRestMonthList(dataQuery);
 }
 
-// This function creates a list of restaurants visited by month.
+// This function calcualtes how much you spent in a month.
 function createRestMonthList(dataQuery) {
+  const amountSpentArray = [];
   const data = dataQuery.payload;
+  console.log(data);
   const body = document.body;
   // new elements are created to display the fetched restaurant.
   const calcBackground = document.createElement("div");
@@ -142,19 +149,18 @@ function createRestMonthList(dataQuery) {
   miniBackground.appendChild(ul);
   console.log(data);
   data.forEach((item) => {
-    const li1 = document.createElement("li");
-    li1.innerText = `${item.restaurant_name}`;
-    ul.appendChild(li1);
-    const li2 = document.createElement("li");
-    li2.innerText = `${item.location}`;
-    ul.appendChild(li2);
-    const li3 = document.createElement("li");
-    li3.innerText = `${item.menu}`;
-    ul.appendChild(li3);
-    const li4 = document.createElement("li");
-    li4.innerText = `${item.amount_spent}£`;
-    ul.appendChild(li4);
+    amountSpentArray.push(item.amount_spent);
   });
+  const totalSpent = amountSpentArray.reduce((a, b) => a + b);
+  const spentMonthHeading = document.createElement("h1");
+  spentMonthHeading.classList.add("spentMonthHeading");
+  spentMonthHeading.innerText = `Total amount spent in ${months.value}`;
+  const li1 = document.createElement("li");
+  li1.classList.add("amountspent");
+  li1.innerText = `You spent ${totalSpent}£ in ${months.value}`;
+  ul.appendChild(spentMonthHeading);
+  ul.appendChild(li1);
+
   const docHeight = document.body.clientHeight;
   calcBackground.style.height = `${docHeight}px`;
   calcBackground.appendChild(miniBackground);

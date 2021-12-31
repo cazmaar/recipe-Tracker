@@ -6,17 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recipe Tracker</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/6a4551a17e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav class="nav-bar">
       <ul class="nav-bar-section">
         <div class="left-nav">
-          <li id="item1" class="nav-items">Ho-me</li>
+          <li id="item1" class="nav-items"><span>Home</span></li>
           <li id="item2" class="nav-items">vsdv-u</li>
         </div>
         <div class="right-nav">
           <li id="item3" class="nav-items">sdcsdcs</li>
           <li id="item4" class="nav-items">sdcsc</li>
+          <li><i class="far fa-user-circle"></i></li>
         </div>
       </ul>
     </nav>
@@ -24,12 +29,16 @@
       <img class="restaurant-image1" src="./images/img3.jpg" alt="" />
     </div>
     <article class="recentandtoprated">
-      <div class="recentandtop">
-        <h1>Your most recent restaurants</h1>
+      <div class="recentandtop" id="recent">
+        <h1 class="recentandtop-heading">Your most recent restaurants</h1>
         <ul class="recentrestaurant-list"></ul>
       </div>
-      <div class="recentandtop">
-        <h1>Your Top rated restaurants</h1>
+      <div
+        class="recentandtop"
+        id="top
+      "
+      >
+        <h1 class="recentandtop-heading">Your Top rated restaurants</h1>
         <ul class="topratedrestaurant-list"></ul>
       </div>
     </article>
@@ -40,7 +49,7 @@
     </div>
 
     <div class="input-fieldsection">
-      <h1 class="inputfield-heading">vbnmkl</h1>
+      <h1 class="inputfield-heading">Add a new Restaurant</h1>
       <form class="inputfield-box">
         <label class="inputlabel" for=""
           >Date <br /><input
@@ -79,12 +88,12 @@
           >Rating <br /><input class="inputfield" type="text" id="inputrating"
         /></label>
         <div>
-          <button  class="submit-button">Submit</button>
+          <button class="submit-button">Submit</button>
         </div>
       </form>
     </div>
     <div class="calc-section">
-      <div class="calc-section1">
+      <div class="calc-section1" id="firstcalc-section">
         <div class="spent-month">
           <p>Get to know how much you spent in a particular month</p>
           <div class="months">
@@ -124,7 +133,7 @@
           />
         </div>
       </div>
-      <div class="calc-section1">
+      <div class="calc-section1" id="secondcalc-section">
         <div class="visitedmonths">
           <p>You can search for all restaurants visited in a month.</p>
           <label for="visitedmonths">Choose a month: </label>
