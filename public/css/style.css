@@ -484,9 +484,30 @@
     min-height: 300px;
     max-height: 90vh;
     transform: translate(-50%, -50%);
-    background-color: white;
     left: 50%;
     top: 50%;
     position: fixed;
+    background-color: white;
+  }
+
+  .ul-spent {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2rem;
+    color: black;
+  }
+
+  .ul-location {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    color: white;
+    list-style: none;
+  }
+
+  .location-div {
+    margin-top: 1rem;
   }
 }

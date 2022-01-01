@@ -11,6 +11,21 @@ const months = document.querySelector("#months");
 const getListByLocation = document.querySelector("#restaurantlocation");
 const restaurantRating = document.querySelector("#restaurant-rating");
 
+const yearArr = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 // fetches all the restaurant data from the API
 async function getter() {
   const response = await fetch("http://localhost:3000/restaurants");
@@ -105,12 +120,17 @@ async function addRestaurantRatings() {
 // This function gather form data to post to the details table.
 function gatherFormData() {
   const date = dateRest.value;
+  const newDate = new Date(date);
+  const monthEntered = newDate.getUTCMonth() ;
+  const month = yearArr[monthEntered];
+  console.log(monthEntered);
   const nameV = nameRest.value;
   const location = locationRest.value;
   return {
     date,
     nameV,
     location,
+    month,
   };
 }
 
@@ -145,7 +165,7 @@ function createRestMonthList(dataQuery) {
   miniBackground.classList.add("minibg");
   calcBackground.classList.add("calcbackground");
   const ul = document.createElement("ul");
-  ul.classList.add("ul");
+  ul.classList.add("ul-spent");
   miniBackground.appendChild(ul);
   console.log(data);
   data.forEach((item) => {
@@ -205,23 +225,29 @@ function createRestLocationList(dataQuery) {
   const miniBackground = document.createElement("div");
   miniBackground.classList.add("minibg");
   calcBackground.classList.add("calcbackground");
+  const locationheading = document.createElement("h2");
+  locationheading.innerText = `Restaurants in ${getListByLocation.value} `;
   const ul = document.createElement("ul");
-  ul.classList.add("ul");
+  ul.appendChild(locationheading);
+  ul.classList.add("ul-location");
   miniBackground.appendChild(ul);
   console.log(data);
   data.forEach((item) => {
+    const div = document.createElement("div");
+    div.classList.add("location-div");
     const li1 = document.createElement("li");
     li1.innerText = `${item.restaurant_name}`;
-    ul.appendChild(li1);
+    div.appendChild(li1);
     const li2 = document.createElement("li");
     li2.innerText = `${item.date}`;
-    ul.appendChild(li2);
+    div.appendChild(li2);
     const li3 = document.createElement("li");
     li3.innerText = `${item.menu}`;
-    ul.appendChild(li3);
+    div.appendChild(li3);
     const li4 = document.createElement("li");
     li4.innerText = `${item.restaurant_rating}`;
-    ul.appendChild(li4);
+    div.appendChild(li4);
+    ul.appendChild(div);
   });
   const docHeight = document.body.clientHeight;
   calcBackground.style.height = `${docHeight}px`;
@@ -231,6 +257,7 @@ function createRestLocationList(dataQuery) {
 }
 
 getListByLocation.addEventListener("change", getDataFromAPIByLocation);
+console.log(getListByLocation.value);
 
 // This function gets you list of restaurants with a particular rating.
 async function getDataFromAPIByRating(event) {
