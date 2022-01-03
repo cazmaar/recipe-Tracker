@@ -299,18 +299,23 @@
 
   #item2 {
     padding: 0.2rem;
-  }
-
-  .right-nav {
-    margin-right: 4rem;
-  }
-  #item3 {
-    padding: 0.2rem;
+    color: green;
     margin-right: 1rem;
   }
 
+  .right-nav {
+    margin-right: 2rem;
+    align-items: center;
+  }
+ 
+
   #item4 {
     padding: 0.2rem;
+  }
+  
+  #item5{
+    padding: 0.5rem;
+    font-size: 1.8rem;
   }
   .restaurant-image1 {
     height: 40rem;
