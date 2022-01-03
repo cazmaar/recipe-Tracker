@@ -107,29 +107,6 @@
   margin-bottom: 1rem;
 }
 
-.calc-section {
-  display: flex;
-}
-.calc-section1 {
-  height: 10rem;
-  background-color: var(--secondarycolor);
-  width: 14rem;
-  text-align: center;
-}
-
-#firstcalc-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-#secondcalc-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
 
 @media screen and (min-width: 667px) {
   .nav-bar-section {
@@ -215,18 +192,6 @@
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     text-align: center;
-  }
-
-  .calc-section {
-    display: flex;
-    height: 15rem;
-    background-color: var(--secondarycolor);
-  }
-  .calc-section1 {
-    width: 100%;
-    height: 15rem;
-    text-align: center;
-    padding-top: 2rem;
   }
 }
 
@@ -317,17 +282,6 @@
     text-align: center;
   }
 
-  .calc-section {
-    display: flex;
-    height: 15rem;
-    background-color: var(--secondarycolor);
-  }
-  .calc-section1 {
-    width: 100%;
-    height: 15rem;
-    text-align: center;
-    padding-top: 2rem;
-  }
 }
 
 @media screen and (min-width: 1106px) {
@@ -441,33 +395,41 @@
     text-align: center;
   }
 
-  .calc-section {
-    display: flex;
-    height: 25rem;
-    background-color: var(--secondarycolor);
-  }
-  .calc-section1 {
-    width: 100%;
-    height: 25rem;
+  .calc-heading{
     text-align: center;
-    padding-top: 2rem;
+   padding: 2rem;
   }
 
-  .spent-month {
-    border-radius: 20%;
-    margin: 1rem;
-    padding: 1rem;
+  .calc-section{
+    display: flex;
+    justify-content: space-evenly;
   }
 
-  .months {
-    margin-top: 1.5rem;
+
+  #firstcalc-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
-  .text-year {
+  #secondcalc-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .months{
+    margin-bottom: 4rem;
+  }
+  
+  .header{
+    margin-bottom: 1rem;
+  }
+
+  footer{
     margin-top: 2rem;
-  }
-
-  #year {
-    margin-top: 1rem;
+    background-color: black;
+    height: 1rem;
+    width: 100%;
   }
 
   .calcbackground {

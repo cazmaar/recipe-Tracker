@@ -82,7 +82,7 @@ function createRecentList(fetchedArray) {
   fetchedArray.slice(0, 5).forEach((item) => {
     const newDate = item.date;
     const day = newDate.getUTCDate();
-    const month = newDate.getUTCMonth();
+    const month = newDate.getUTCMonth() + 1;
     const year = newDate.getUTCFullYear();
     item.date = `${day}/${month}/${year}`;
     const div = document.createElement("div");
@@ -121,7 +121,7 @@ async function addRestaurantRatings() {
 function gatherFormData() {
   const date = dateRest.value;
   const newDate = new Date(date);
-  const monthEntered = newDate.getUTCMonth() ;
+  const monthEntered = newDate.getUTCMonth();
   const month = yearArr[monthEntered];
   console.log(monthEntered);
   const nameV = nameRest.value;
@@ -145,7 +145,6 @@ function gatherFormRatings() {
 // This function gets restaurants based on a particular month by query
 async function getDataFromAPIByQuery(event) {
   const monthValue = event.target.value;
-  console.log(monthValue);
   const responseQuery = await fetch(
     `http://localhost:3000/restaurants?month=${monthValue}`
   );
@@ -306,3 +305,96 @@ function createRestRatingList(dataQuery) {
 }
 
 restaurantRating.addEventListener("change", getDataFromAPIByRating);
+
+// This function calculates the percentage increase of your expenses for the current month.
+async function percentageIncrease() {
+  const date = new Date();
+  let monthNum = date.getUTCMonth();
+  monthNum = 3;
+  const month = yearArr[monthNum];
+  if (monthNum === 0) {
+    const responseQuery = await fetch(
+      `http://localhost:3000/restaurants?month=${month}`
+    );
+    dataQuery = await responseQuery.json();
+
+    console.log(dataQuery);
+    for (let i = 11; i >= 8; i--) {
+      const newMonth = yearArr[monthNum + i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth}`
+      );
+      dataQuery = await responseQuery.json();
+      console.log(dataQuery);
+    }
+  } else if (monthNum === 1) {
+    const responseQuery = await fetch(
+      `http://localhost:3000/restaurants?month=${month}`
+    );
+    const dataQuery = await responseQuery.json();
+    console.log(dataQuery);
+
+    const newMonth = yearArr[monthNum - 1];
+    console.log(newMonth);
+    const responseQuery1 = await fetch(
+      `http://localhost:3000/restaurants?month=${newMonth}`
+    );
+    const dataQuery1 = await responseQuery1.json();
+    console.log(dataQuery1);
+
+    for (let i = 11; i >= 9; i--) {
+      const newMonth1 = yearArr[i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth1}`
+      );
+      const dataQuery = await responseQuery.json();
+
+      console.log(dataQuery);
+    }
+  } else if (monthNum === 2) {
+    for (let i = monthNum; i >= monthNum - 2; i--) {
+      const newMonth = yearArr[i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth}`
+      );
+      const dataQuery = await responseQuery.json();
+      console.log(dataQuery);
+    }
+    for (let i = 11; i >= 10; i--) {
+      const newMonth = yearArr[i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth}`
+      );
+      const dataQuery = await responseQuery.json();
+      console.log(dataQuery);
+    }
+  } else if (monthNum === 3) {
+    for (let i = monthNum; i >= monthNum - 3; i--) {
+      const newMonth = yearArr[i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth}`
+      );
+      const dataQuery = await responseQuery.json();
+      console.log(dataQuery);
+    }
+    for (let i = 11; i >= 11; i--) {
+      const newMonth = yearArr[i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth}`
+      );
+      const dataQuery = await responseQuery.json();
+      console.log(dataQuery);
+    }
+  } else {
+    for (let i = monthNum; i >= monthNum - 4; i--) {
+      const newMonth = yearArr[i];
+      const responseQuery = await fetch(
+        `http://localhost:3000/restaurants?month=${newMonth}`
+      );
+      const dataQuery = await responseQuery.json();
+      console.log(dataQuery);
+    }
+  }
+}
+
+percentageIncrease();

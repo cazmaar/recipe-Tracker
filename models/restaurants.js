@@ -83,11 +83,11 @@ export async function getRestaurantsById(id) {
 
 // // This function handles the post request to the restaurants details table.
 export async function createRestaurantDetails(body) {
-  const { date, nameV, location, year, month } = body;
+  const { date, nameV, location, month } = body;
   console.log(body);
   const res = await query(
-    ` INSERT INTO restaurants_details(date, restaurant_name,location,year,month) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
-    [date, nameV, location, year, month]
+    ` INSERT INTO restaurants_details(date, restaurant_name,location,month) VALUES ($1,$2,$3,$4) RETURNING *`,
+    [date, nameV, location, month]
   );
   return res.rows;
 }
