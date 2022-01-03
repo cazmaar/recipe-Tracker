@@ -88,11 +88,14 @@ function createRecentList(fetchedArray) {
     const div = document.createElement("div");
     div.classList.add("eachList");
     const li1 = document.createElement("li");
-    li1.innerText = `${item.date} ${item.restaurant_name}`;
+    li1.innerText = ` ${item.restaurant_name}`;
     div.appendChild(li1);
-    const li2 = document.createElement("p");
-    li2.innerText = `menu: ${item.menu}`;
-    div.appendChild(li2);
+     const li2 = document.createElement("p");
+     li2.innerText = `Date Visited: ${item.date}`;
+     div.appendChild(li2);
+    const li3 = document.createElement("p");
+    li3.innerText = `menu: ${item.menu}`;
+    div.appendChild(li3);
     recentRestaurants.appendChild(div);
   });
 }
@@ -206,12 +209,10 @@ getter();
 // This function gets you list of restaurant in a particulart location.
 async function getDataFromAPIByLocation(event) {
   const getListByLocationValue = event.target.value;
-  console.log(getListByLocationValue);
   const responseQuery = await fetch(
     `http://localhost:3000/restaurants?location=${getListByLocationValue}`
   );
   dataQuery = await responseQuery.json();
-  console.log(dataQuery);
   createRestLocationList(dataQuery);
 }
 
@@ -230,21 +231,27 @@ function createRestLocationList(dataQuery) {
   ul.appendChild(locationheading);
   ul.classList.add("ul-location");
   miniBackground.appendChild(ul);
-  console.log(data);
   data.forEach((item) => {
+    const newDate = new Date(item.date);
+    const day = newDate.getUTCDate();
+    const month = newDate.getUTCMonth() + 1;
+    const year = newDate.getUTCFullYear();
+    item.date = `${day}/${month}/${year}`;
+    console.log("date", newDate);
+    console.log("hh", day);
     const div = document.createElement("div");
     div.classList.add("location-div");
     const li1 = document.createElement("li");
-    li1.innerText = `${item.restaurant_name}`;
+    li1.innerHTML = `<p><${item.restaurant_name}</p>`;
     div.appendChild(li1);
     const li2 = document.createElement("li");
-    li2.innerText = `${item.date}`;
+    li2.innerText = `Date Visited: ${item.date}`;
     div.appendChild(li2);
     const li3 = document.createElement("li");
-    li3.innerText = `${item.menu}`;
+    li3.innerText = `Menu: ${item.menu}`;
     div.appendChild(li3);
     const li4 = document.createElement("li");
-    li4.innerText = `${item.restaurant_rating}`;
+    li4.innerText = `Rating: ${item.restaurant_rating}`;
     div.appendChild(li4);
     ul.appendChild(div);
   });
@@ -280,22 +287,24 @@ function createRestRatingList(dataQuery) {
   miniBackground.classList.add("minibg");
   calcBackground.classList.add("calcbackground");
   const ul = document.createElement("ul");
-  ul.classList.add("ul");
+  ul.classList.add("ul-location");
   miniBackground.appendChild(ul);
-  console.log(data);
+  const ratingheading = document.createElement("h2");
+  ratingheading.innerText = `Your Visited Restaurants with a rating of ${restaurantRating.value} `;
+  ul.appendChild(ratingheading);
   data.forEach((item) => {
+    const div = document.createElement("div");
+    div.classList.add("location-div");
     const li1 = document.createElement("li");
     li1.innerText = `${item.restaurant_name}`;
-    ul.appendChild(li1);
+    div.appendChild(li1);
     const li2 = document.createElement("li");
-    li2.innerText = `${item.date}`;
-    ul.appendChild(li2);
+    li2.innerText = `Menu: ${item.menu}`;
+    div.appendChild(li2);
     const li3 = document.createElement("li");
-    li3.innerText = `${item.menu}`;
-    ul.appendChild(li3);
-    const li4 = document.createElement("li");
-    li4.innerText = `${item.location}`;
-    ul.appendChild(li4);
+    li3.innerText = `Location: ${item.location}`;
+    div.appendChild(li3);
+    ul.appendChild(div);
   });
   const docHeight = document.body.clientHeight;
   calcBackground.style.height = `${docHeight}px`;
@@ -309,7 +318,7 @@ restaurantRating.addEventListener("change", getDataFromAPIByRating);
 // // This function calculates the percentage increase of your expenses for the current month.
 async function percentageIncrease() {
   const date = new Date();
-  const monthNum = date.getUTCMonth();
+  let monthNum = date.getUTCMonth();
   const month = yearArr[monthNum];
   if (monthNum === 0) {
     const spentArr = [];
@@ -360,15 +369,28 @@ async function percentageIncrease() {
       percentageText.innerText = `Your spending went up by ${rounded}% this month`;
     }
     const p1 = document.querySelector(".month1");
-    p1.innerText = `${summa}£`;
-    const p2 = document.querySelector(".month2");
-    p2.innerText = `${summa1}£`;
-    const p3 = document.querySelector(".month3");
-    p3.innerText = `${summa2}£`;
-    const p4 = document.querySelector(".month4");
-    p4.innerText = `${summa3}£`;
-    const p5 = document.querySelector(".month5");
-    p5.innerText = `${summa4}£`;
+    p1.innerHTML = `<div class="display-moneysection">
+    <div class="display-eachmonth">
+    <p>${yearArr[0]}</p>
+    <div class="one"><p class="money">${summa}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[11]}</p>
+    <div class="one"><p class="money">${summa1}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[10]}</p>
+    <div class="one"><p class="money">${summa2}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[9]}</p>
+    <div class="one"><p class="money">${summa3}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[8]}</p>
+    <div class="one"><p class="money">${summa4}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    </div>`;
   } else if (monthNum === 1) {
     const spentArr = [];
     const responseQuery = await fetch(
@@ -430,15 +452,28 @@ async function percentageIncrease() {
       percentageText.innerText = `Your spending went up by ${rounded}% this month`;
     }
     const p1 = document.querySelector(".month1");
-    p1.innerText = `${summa}£`;
-    const p2 = document.querySelector(".month2");
-    p2.innerText = `${summa1}£`;
-    const p3 = document.querySelector(".month3");
-    p3.innerText = `${summa2}£`;
-    const p4 = document.querySelector(".month4");
-    p4.innerText = `${summa3}£`;
-    const p5 = document.querySelector(".month5");
-    p5.innerText = `${summa4}£`;
+    p1.innerHTML = `<div class="display-moneysection">
+    <div class="display-eachmonth">
+    <p>${yearArr[1]}</p>
+    <div class="one"><p class="money">${summa}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[0]}</p>
+    <div class="one"><p class="money">${summa1}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[11]}</p>
+    <div class="one"><p class="money">${summa2}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[10]}</p>
+    <div class="one"><p class="money">${summa3}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[9]}</p>
+    <div class="one"><p class="money">${summa4}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    </div>`;
   } else if (monthNum === 2) {
     const spentArr = [];
     for (let i = monthNum; i >= monthNum - 2; i--) {
@@ -491,15 +526,28 @@ async function percentageIncrease() {
       percentageText.innerText = `Your spending went up by ${rounded}% this month`;
     }
     const p1 = document.querySelector(".month1");
-    p1.innerText = `${summa}£`;
-    const p2 = document.querySelector(".month2");
-    p2.innerText = `${summa1}£`;
-    const p3 = document.querySelector(".month3");
-    p3.innerText = `${summa2}£`;
-    const p4 = document.querySelector(".month4");
-    p4.innerText = `${summa3}£`;
-    const p5 = document.querySelector(".month5");
-    p5.innerText = `${summa4}£`;
+    p1.innerHTML = `<div class="display-moneysection">
+    <div class="display-eachmonth">
+    <p>${yearArr[2]}</p>
+    <div class="one"><p class="money">${summa}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[1]}</p>
+    <div class="one"><p class="money">${summa1}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[0]}</p>
+    <div class="one"><p class="money">${summa2}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[11]}</p>
+    <div class="one"><p class="money">${summa3}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[10]}</p>
+    <div class="one"><p class="money">${summa4}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    </div>`;
   } else if (monthNum === 3) {
     const spentArr = [];
     for (let i = monthNum; i >= monthNum - 3; i--) {
@@ -553,15 +601,28 @@ async function percentageIncrease() {
       percentageText.innerText = `Your spending went up by ${rounded}% this month`;
     }
     const p1 = document.querySelector(".month1");
-    p1.innerText = `${summa}£`;
-    const p2 = document.querySelector(".month2");
-    p2.innerText = `${summa1}£`;
-    const p3 = document.querySelector(".month3");
-    p3.innerText = `${summa2}£`;
-    const p4 = document.querySelector(".month4");
-    p4.innerText = `${summa3}£`;
-    const p5 = document.querySelector(".month5");
-    p5.innerText = `${summa4}£`;
+    p1.innerHTML = `<div class="display-moneysection">
+    <div class="display-eachmonth">
+    <p>${yearArr[3]}</p>
+    <div class="one"><p class="money">${summa}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[2]}</p>
+    <div class="one"><p class="money">${summa1}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[1]}</p>
+    <div class="one"><p class="money">${summa2}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[0]}</p>
+    <div class="one"><p class="money">${summa3}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[11]}</p>
+    <div class="one"><p class="money">${summa4}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    </div>`;
   } else {
     const spentArr = [];
     for (let i = monthNum; i >= monthNum - 4; i--) {
@@ -608,15 +669,28 @@ async function percentageIncrease() {
     }
     const summa4 = sumMonth5.reduce((a, b) => a + b);
     const p1 = document.querySelector(".month1");
-    p1.innerText = `${summa}£`;
-    const p2 = document.querySelector(".month2");
-    p2.innerText = `${summa1}£`;
-    const p3 = document.querySelector(".month3");
-    p3.innerText = `${summa2}£`;
-    const p4 = document.querySelector(".month4");
-    p4.innerText = `${summa3}£`;
-    const p5 = document.querySelector(".month5");
-    p5.innerText = `${summa4}£`;
+    p1.innerHTML = `<div class="display-moneysection">
+    <div class="display-eachmonth">
+    <p>${yearArr[0]}</p>
+    <div class="one"><p class="money">${summa}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[11]}</p>
+    <div class="one"><p class="money">${summa1}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[10]}</p>
+    <div class="one"><p class="money">${summa2}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[9]}</p>
+    <div class="one"><p class="money">${summa3}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    <div class="display-eachmonth">
+    <p>${yearArr[8]}</p>
+    <div class="one"><p class="money">${summa4}£</p><i class="fas fa-wallet"></i></div>
+    </div>
+    </div>`;
   }
 }
 

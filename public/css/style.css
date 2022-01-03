@@ -107,7 +107,6 @@
   margin-bottom: 1rem;
 }
 
-
 @media screen and (min-width: 667px) {
   .nav-bar-section {
     height: 4rem;
@@ -281,7 +280,6 @@
     font-size: 1.5rem;
     text-align: center;
   }
-
 }
 
 @media screen and (min-width: 1106px) {
@@ -327,6 +325,12 @@
   .recentandtop {
     text-align: center;
     border-radius: 2%;
+    height: 20rem;
+    overflow-y: scroll;
+  }
+
+  .recentandtop::-webkit-scrollbar {
+    width: 0px;
   }
 
   .eachList {
@@ -335,13 +339,13 @@
   }
 
   .topratedrestaurant-list {
-    list-style-type: square;
+    list-style: none;
     margin-top: 1.5rem;
     font-size: 1rem;
   }
 
   .recentrestaurant-list {
-    list-style-type: square;
+    list-style: none;
     margin-top: 1.5rem;
     font-size: 1rem;
   }
@@ -351,7 +355,7 @@
   }
 
   .text1 {
-    height: 13rem;
+    height: 8rem;
     padding-top: 1rem;
   }
   .percentage-text {
@@ -395,37 +399,36 @@
     text-align: center;
   }
 
-  .calc-heading{
+  .calc-heading {
     text-align: center;
-   padding: 2rem;
+    padding: 2rem;
   }
 
-  .calc-section{
+  .calc-section {
     display: flex;
     justify-content: space-evenly;
   }
 
-
-  #firstcalc-section{
+  #firstcalc-section {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
   }
-  #secondcalc-section{
+  #secondcalc-section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .months{
+  .months {
     margin-bottom: 4rem;
   }
-  
-  .header{
+
+  .header {
     margin-bottom: 1rem;
   }
 
-  footer{
+  footer {
     margin-top: 2rem;
     background-color: black;
     height: 1rem;
@@ -444,12 +447,20 @@
   .minibg {
     min-width: 40%;
     min-height: 300px;
-    max-height: 90vh;
+    max-height: 50vh;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
     position: fixed;
     background-color: white;
+    border: 2px solid black;
+    overflow-y: scroll;
+    margin: 2px;
+    border-radius: 2rem;
+  }
+
+  .minibg::-webkit-scrollbar {
+    width: 0px;
   }
 
   .ul-spent {
@@ -465,11 +476,28 @@
     text-align: center;
     flex-direction: column;
     margin-top: 2rem;
-    color: white;
+    color: black;
     list-style: none;
   }
 
   .location-div {
     margin-top: 1rem;
   }
+}
+
+.one {
+  display: flex;
+  justify-content: center;
+}
+.money {
+  margin-right: 0.5rem;
+}
+.display-moneysection {
+  display: flex;
+  justify-content: center;
+}
+
+.display-eachmonth {
+  margin-left: 1rem;
+  color: green;
 }
