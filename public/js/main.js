@@ -306,33 +306,76 @@ function createRestRatingList(dataQuery) {
 
 restaurantRating.addEventListener("change", getDataFromAPIByRating);
 
-// This function calculates the percentage increase of your expenses for the current month.
+// // This function calculates the percentage increase of your expenses for the current month.
 async function percentageIncrease() {
   const date = new Date();
-  let monthNum = date.getUTCMonth();
-  monthNum = 3;
+  const monthNum = date.getUTCMonth();
   const month = yearArr[monthNum];
   if (monthNum === 0) {
+    const spentArr = [];
     const responseQuery = await fetch(
       `http://localhost:3000/restaurants?month=${month}`
     );
     dataQuery = await responseQuery.json();
 
-    console.log(dataQuery);
+    spentArr.push(dataQuery);
     for (let i = 11; i >= 8; i--) {
       const newMonth = yearArr[monthNum + i];
       const responseQuery = await fetch(
         `http://localhost:3000/restaurants?month=${newMonth}`
       );
       dataQuery = await responseQuery.json();
-      console.log(dataQuery);
+      spentArr.push(dataQuery);
     }
+    const month1 = spentArr[0].payload;
+    const may = spentArr[1].payload;
+    const april = spentArr[2].payload;
+    const march = spentArr[3].payload;
+    const february = spentArr[4].payload;
+    const sumMonth1 = [];
+    month1.forEach((item) => sumMonth1.push(item.amount_spent));
+    const summa = sumMonth1.reduce((a, b) => a + b);
+    const sumMonth2 = [];
+    may.forEach((item) => sumMonth2.push(item.amount_spent));
+    const summa1 = sumMonth2.reduce((a, b) => a + b);
+    sumMonth3 = [];
+    april.forEach((item) => sumMonth3.push(item.amount_spent));
+    const summa2 = sumMonth3.reduce((a, b) => a + b);
+    sumMonth4 = [];
+    march.forEach((item) => sumMonth4.push(item.amount_spent));
+    const summa3 = sumMonth4.reduce((a, b) => a + b);
+    sumMonth5 = [];
+    february.forEach((item) => sumMonth5.push(item.amount_spent));
+    const summa4 = sumMonth5.reduce((a, b) => a + b);
+    const difference = summa - summa1;
+    if (difference < 0) {
+      const percentageIncrease = ((difference * -1) / summa1) * 100;
+      const percentageText = document.querySelector(".percentage-text");
+      const rounded = Math.round(percentageIncrease);
+      percentageText.innerText = `Your spending went down by ${rounded}% this month`;
+    } else {
+      const percentageIncrease = (difference / summa1) * 100;
+      const rounded = Math.round(percentageIncrease);
+      const percentageText = document.querySelector(".percentage-text");
+      percentageText.innerText = `Your spending went up by ${rounded}% this month`;
+    }
+    const p1 = document.querySelector(".month1");
+    p1.innerText = `${summa}£`;
+    const p2 = document.querySelector(".month2");
+    p2.innerText = `${summa1}£`;
+    const p3 = document.querySelector(".month3");
+    p3.innerText = `${summa2}£`;
+    const p4 = document.querySelector(".month4");
+    p4.innerText = `${summa3}£`;
+    const p5 = document.querySelector(".month5");
+    p5.innerText = `${summa4}£`;
   } else if (monthNum === 1) {
+    const spentArr = [];
     const responseQuery = await fetch(
       `http://localhost:3000/restaurants?month=${month}`
     );
     const dataQuery = await responseQuery.json();
-    console.log(dataQuery);
+    spentArr.push(dataQuery);
 
     const newMonth = yearArr[monthNum - 1];
     console.log(newMonth);
@@ -340,7 +383,7 @@ async function percentageIncrease() {
       `http://localhost:3000/restaurants?month=${newMonth}`
     );
     const dataQuery1 = await responseQuery1.json();
-    console.log(dataQuery1);
+    spentArr.push(dataQuery1);
 
     for (let i = 11; i >= 9; i--) {
       const newMonth1 = yearArr[i];
@@ -349,16 +392,63 @@ async function percentageIncrease() {
       );
       const dataQuery = await responseQuery.json();
 
-      console.log(dataQuery);
+      spentArr.push(dataQuery);
     }
+    const month1 = spentArr[0].payload;
+    const may = spentArr[1].payload;
+    const april = spentArr[2].payload;
+    const march = spentArr[3].payload;
+    const february = spentArr[4].payload;
+    const sumMonth1 = [];
+    month1.forEach((item) => sumMonth1.push(item.amount_spent));
+    const summa = sumMonth1.reduce((a, b) => a + b);
+    const sumMonth2 = [];
+    may.forEach((item) => sumMonth2.push(item.amount_spent));
+    const summa1 = sumMonth2.reduce((a, b) => a + b);
+    console.log("this is me", summa, summa1);
+    sumMonth3 = [];
+    april.forEach((item) => sumMonth3.push(item.amount_spent));
+    const summa2 = sumMonth3.reduce((a, b) => a + b);
+    sumMonth4 = [];
+    march.forEach((item) => sumMonth4.push(item.amount_spent));
+    const summa3 = sumMonth4.reduce((a, b) => a + b);
+    sumMonth5 = [];
+    february.forEach((item) => sumMonth5.push(item.amount_spent));
+    const summa4 = sumMonth5.reduce((a, b) => a + b);
+    const difference = summa - summa1;
+    console.log(difference);
+    if (difference < 0) {
+      const percentageIncrease = ((difference * -1) / summa1) * 100;
+      console.log(percentageIncrease);
+      const percentageText = document.querySelector(".percentage-text");
+      const rounded = Math.round(percentageIncrease);
+      percentageText.innerText = `Your spending went down by ${rounded}% this month`;
+    } else {
+      const percentageIncrease = (difference / summa1) * 100;
+      const rounded = Math.round(percentageIncrease);
+      const percentageText = document.querySelector(".percentage-text");
+      percentageText.innerText = `Your spending went up by ${rounded}% this month`;
+    }
+    const p1 = document.querySelector(".month1");
+    p1.innerText = `${summa}£`;
+    const p2 = document.querySelector(".month2");
+    p2.innerText = `${summa1}£`;
+    const p3 = document.querySelector(".month3");
+    p3.innerText = `${summa2}£`;
+    const p4 = document.querySelector(".month4");
+    p4.innerText = `${summa3}£`;
+    const p5 = document.querySelector(".month5");
+    p5.innerText = `${summa4}£`;
   } else if (monthNum === 2) {
+    const spentArr = [];
     for (let i = monthNum; i >= monthNum - 2; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
         `http://localhost:3000/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
-      console.log(dataQuery);
+
+      spentArr.push(dataQuery);
     }
     for (let i = 11; i >= 10; i--) {
       const newMonth = yearArr[i];
@@ -366,16 +456,59 @@ async function percentageIncrease() {
         `http://localhost:3000/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
-      console.log(dataQuery);
+      spentArr.push(dataQuery);
     }
+    const month1 = spentArr[0].payload;
+    const may = spentArr[1].payload;
+    const april = spentArr[2].payload;
+    const march = spentArr[3].payload;
+    const february = spentArr[4].payload;
+    const sumMonth1 = [];
+    month1.forEach((item) => sumMonth1.push(item.amount_spent));
+    const summa = sumMonth1.reduce((a, b) => a + b);
+    const sumMonth2 = [];
+    may.forEach((item) => sumMonth2.push(item.amount_spent));
+    const summa1 = sumMonth2.reduce((a, b) => a + b);
+    sumMonth3 = [];
+    april.forEach((item) => sumMonth3.push(item.amount_spent));
+    const summa2 = sumMonth3.reduce((a, b) => a + b);
+    sumMonth4 = [];
+    march.forEach((item) => sumMonth4.push(item.amount_spent));
+    const summa3 = sumMonth4.reduce((a, b) => a + b);
+    sumMonth5 = [];
+    february.forEach((item) => sumMonth5.push(item.amount_spent));
+    const summa4 = sumMonth5.reduce((a, b) => a + b);
+    const difference = summa - summa1;
+    if (difference < 0) {
+      const percentageIncrease = ((difference * -1) / summa1) * 100;
+      const percentageText = document.querySelector(".percentage-text");
+      const rounded = Math.round(percentageIncrease);
+      percentageText.innerText = `Your spending went down by ${rounded}% this month`;
+    } else {
+      const percentageIncrease = (difference / summa1) * 100;
+      const rounded = Math.round(percentageIncrease);
+      const percentageText = document.querySelector(".percentage-text");
+      percentageText.innerText = `Your spending went up by ${rounded}% this month`;
+    }
+    const p1 = document.querySelector(".month1");
+    p1.innerText = `${summa}£`;
+    const p2 = document.querySelector(".month2");
+    p2.innerText = `${summa1}£`;
+    const p3 = document.querySelector(".month3");
+    p3.innerText = `${summa2}£`;
+    const p4 = document.querySelector(".month4");
+    p4.innerText = `${summa3}£`;
+    const p5 = document.querySelector(".month5");
+    p5.innerText = `${summa4}£`;
   } else if (monthNum === 3) {
+    const spentArr = [];
     for (let i = monthNum; i >= monthNum - 3; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
         `http://localhost:3000/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
-      console.log(dataQuery);
+      spentArr.push(dataQuery);
     }
     for (let i = 11; i >= 11; i--) {
       const newMonth = yearArr[i];
@@ -383,17 +516,107 @@ async function percentageIncrease() {
         `http://localhost:3000/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
-      console.log(dataQuery);
+      spentArr.push(dataQuery);
     }
+    console.log("dd", spentArr);
+    const month1 = spentArr[0].payload;
+    const may = spentArr[1].payload;
+    const april = spentArr[2].payload;
+    const march = spentArr[3].payload;
+    const february = spentArr[4].payload;
+    const sumMonth1 = [];
+    month1.forEach((item) => sumMonth1.push(item.amount_spent));
+    const summa = sumMonth1.reduce((a, b) => a + b);
+    console.log(summa);
+    const sumMonth2 = [];
+    may.forEach((item) => sumMonth2.push(item.amount_spent));
+    const summa1 = sumMonth2.reduce((a, b) => a + b);
+    sumMonth3 = [];
+    april.forEach((item) => sumMonth3.push(item.amount_spent));
+    const summa2 = sumMonth3.reduce((a, b) => a + b);
+    sumMonth4 = [];
+    march.forEach((item) => sumMonth4.push(item.amount_spent));
+    const summa3 = sumMonth4.reduce((a, b) => a + b);
+    sumMonth5 = [];
+    february.forEach((item) => sumMonth5.push(item.amount_spent));
+    const summa4 = sumMonth5.reduce((a, b) => a + b);
+    const difference = summa - summa1;
+    if (difference < 0) {
+      const percentageIncrease = ((difference * -1) / summa1) * 100;
+      const percentageText = document.querySelector(".percentage-text");
+      const rounded = Math.round(percentageIncrease);
+      percentageText.innerText = `Your spending went down by ${rounded}% this month`;
+    } else {
+      const percentageIncrease = (difference / summa1) * 100;
+      const rounded = Math.round(percentageIncrease);
+      const percentageText = document.querySelector(".percentage-text");
+      percentageText.innerText = `Your spending went up by ${rounded}% this month`;
+    }
+    const p1 = document.querySelector(".month1");
+    p1.innerText = `${summa}£`;
+    const p2 = document.querySelector(".month2");
+    p2.innerText = `${summa1}£`;
+    const p3 = document.querySelector(".month3");
+    p3.innerText = `${summa2}£`;
+    const p4 = document.querySelector(".month4");
+    p4.innerText = `${summa3}£`;
+    const p5 = document.querySelector(".month5");
+    p5.innerText = `${summa4}£`;
   } else {
+    const spentArr = [];
     for (let i = monthNum; i >= monthNum - 4; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
         `http://localhost:3000/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
-      console.log(dataQuery);
+      // console.log(dataQuery);
+      spentArr.push(dataQuery);
     }
+
+    const month1 = spentArr[0].payload;
+    const may = spentArr[1].payload;
+    const april = spentArr[2].payload;
+    const march = spentArr[3].payload;
+    const february = spentArr[4].payload;
+    const sumMonth1 = [];
+    month1.forEach((item) => sumMonth1.push(item.amount_spent));
+    const summa = sumMonth1.reduce((a, b) => a + b);
+    console.log(summa);
+    const sumMonth2 = [];
+    may.forEach((item) => sumMonth2.push(item.amount_spent));
+    const summa1 = sumMonth2.reduce((a, b) => a + b);
+    sumMonth3 = [];
+    april.forEach((item) => sumMonth3.push(item.amount_spent));
+    const summa2 = sumMonth3.reduce((a, b) => a + b);
+    sumMonth4 = [];
+    march.forEach((item) => sumMonth4.push(item.amount_spent));
+    const summa3 = sumMonth4.reduce((a, b) => a + b);
+    sumMonth5 = [];
+    february.forEach((item) => sumMonth5.push(item.amount_spent));
+    const difference = summa - summa1;
+    if (difference < 0) {
+      const percentageIncrease = ((difference * -1) / summa1) * 100;
+      const percentageText = document.querySelector(".percentage-text");
+      const rounded = Math.round(percentageIncrease);
+      percentageText.innerText = `Your spending went down by ${rounded}% this month`;
+    } else {
+      const percentageIncrease = (difference / summa1) * 100;
+      const rounded = Math.round(percentageIncrease);
+      const percentageText = document.querySelector(".percentage-text");
+      percentageText.innerText = `Your spending went up by ${rounded}% this month`;
+    }
+    const summa4 = sumMonth5.reduce((a, b) => a + b);
+    const p1 = document.querySelector(".month1");
+    p1.innerText = `${summa}£`;
+    const p2 = document.querySelector(".month2");
+    p2.innerText = `${summa1}£`;
+    const p3 = document.querySelector(".month3");
+    p3.innerText = `${summa2}£`;
+    const p4 = document.querySelector(".month4");
+    p4.innerText = `${summa3}£`;
+    const p5 = document.querySelector(".month5");
+    p5.innerText = `${summa4}£`;
   }
 }
 
