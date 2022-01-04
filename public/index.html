@@ -21,12 +21,18 @@
         <div class="right-nav">
           <li id="item5"><i class="far fa-user-circle"></i></li>
           <li id="item4" class="nav-items">kazeem</li>
-          <li id="item3" class="nav-items"><i class="fas fa-caret-down"></i></li>
+          <li id="item3" class="nav-items">
+            <i class="fas fa-caret-down"></i>
+          </li>
         </div>
       </ul>
     </nav>
     <div class="new-restaurant-images">
-      <img class="restaurant-image1" src="./images/caroline-attwood-bpPTlXWTOvg-unsplash.jpg" alt="food image" />
+      <img
+        class="restaurant-image1"
+        src="./images/caroline-attwood-bpPTlXWTOvg-unsplash.jpg"
+        alt="food image"
+      />
     </div>
     <article class="recentandtoprated">
       <div class="recentandtop" id="recent">
@@ -59,6 +65,7 @@
             type="Date"
             min="2021-01-01"
             id="inputdate"
+            required
         /></label>
 
         <label class="inputlabel" for=""
@@ -66,6 +73,7 @@
             class="inputfield"
             type="text"
             id="inputname"
+            required
         /></label>
 
         <label class="inputlabel" for=""
@@ -73,10 +81,11 @@
             class="inputfield"
             type="text"
             id="inputlocation"
+            required
         /></label>
 
         <label class="inputlabel" for=""
-          >Menu <br /><input class="inputfield" type="text" id="inputmenu"
+          >Menu <br /><input class="inputfield" type="text" id="inputmenu" required
         /></label>
 
         <label class="inputlabel" for=""
@@ -84,10 +93,11 @@
             class="inputfield"
             type="text"
             id="inputspent"
+            required
         /></label>
 
         <label class="inputlabel" for=""
-          >Rating <br /><input class="inputfield" type="text" id="inputrating"
+          >Rating <br /><input class="inputfield" type="text" id="inputrating" required min="1" max="5"
         /></label>
         <div>
           <button class="submit-button">Submit</button>
@@ -138,7 +148,7 @@
             You can search for all restaurants visited in a month.
           </p>
           <label for="visitedmonths">Choose a month: </label>
-          <select name="" id="visitedmonths">
+          <select name="" id="visitedmonths" class="visited-months">
             <option>Select a month</option>
             <option value="January">January 2021</option>
             <option value="February">February 2021</option>
@@ -152,7 +162,6 @@
             <option value="October">October 2021</option>
             <option value="November">November 2021</option>
             <option value="December">Decmber 2021</option>
-            <option value="December">January 2022</option>
           </select>
         </div>
 

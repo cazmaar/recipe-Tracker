@@ -116,8 +116,4 @@ export const restaurantRating = [
   { menu: "Boritos", amount_spent: 25, restaurant_rating: 3 },
   { menu: "Sea-food Pasta", amount_spent: 87, restaurant_rating: 3 },
   { menu: "Lamb Chops", amount_spent: 93, restaurant_rating: 4 },
-  { menu: "Sunday Roast", amount_spent: 68, restaurant_rating: 4 },
-  { menu: "Fish and Chips", amount_spent: 75, restaurant_rating: 3 },
-  { menu: "Noodles", amount_spent: 88, restaurant_rating: 1 },
-  { menu: "Pasta", amount_spent: 150, restaurant_rating: 1 },
 ];

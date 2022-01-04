@@ -10,7 +10,23 @@ const ratingRest = document.querySelector("#inputrating");
 const months = document.querySelector("#months");
 const getListByLocation = document.querySelector("#restaurantlocation");
 const restaurantRating = document.querySelector("#restaurant-rating");
+const image1 = document.querySelector(".restaurant-image1");
+const visitedRest = document.querySelector(".visited-months");
 
+let image_tracker = "salmon";
+// this function changes the food image after a set time interval
+function change() {
+  if (image_tracker === "salmon") {
+    image1.src = "./images/jay-wennington-N_Y88TWmGwA-unsplash.jpg";
+    image_tracker = "healthy";
+  } else if (image_tracker === "healthy") {
+    image1.src = "./images/caroline-attwood-bpPTlXWTOvg-unsplash.jpg";
+    image_tracker = "salmon";
+  }
+}
+setInterval(change, 4000);
+
+// an array of all the months in a year
 const yearArr = [
   "January",
   "February",
@@ -90,9 +106,9 @@ function createRecentList(fetchedArray) {
     const li1 = document.createElement("li");
     li1.innerText = ` ${item.restaurant_name}`;
     div.appendChild(li1);
-     const li2 = document.createElement("p");
-     li2.innerText = `Date Visited: ${item.date}`;
-     div.appendChild(li2);
+    const li2 = document.createElement("p");
+    li2.innerText = `Date Visited: ${item.date}`;
+    div.appendChild(li2);
     const li3 = document.createElement("p");
     li3.innerText = `menu: ${item.menu}`;
     div.appendChild(li3);
@@ -242,7 +258,7 @@ function createRestLocationList(dataQuery) {
     const div = document.createElement("div");
     div.classList.add("location-div");
     const li1 = document.createElement("li");
-    li1.innerHTML = `<p><${item.restaurant_name}</p>`;
+    li1.innerText = `${item.restaurant_name}`;
     div.appendChild(li1);
     const li2 = document.createElement("li");
     li2.innerText = `Date Visited: ${item.date}`;
@@ -372,23 +388,23 @@ async function percentageIncrease() {
     p1.innerHTML = `<div class="display-moneysection">
     <div class="display-eachmonth">
     <p>${yearArr[0]}</p>
-    <div class="one"><p class="money">${summa}£</p><i class="fas fa-wallet"></i></div>
+    <div class="one"><p class="money">£${summa}</p><i class="fas fa-wallet"></i></div>
     </div>
     <div class="display-eachmonth">
     <p>${yearArr[11]}</p>
-    <div class="one"><p class="money">${summa1}£</p><i class="fas fa-wallet"></i></div>
+    <div class="one"><p class="money">£${summa1}</p><i class="fas fa-wallet"></i></div>
     </div>
     <div class="display-eachmonth">
     <p>${yearArr[10]}</p>
-    <div class="one"><p class="money">${summa2}£</p><i class="fas fa-wallet"></i></div>
+    <div class="one"><p class="money">£${summa2}</p><i class="fas fa-wallet"></i></div>
     </div>
     <div class="display-eachmonth">
     <p>${yearArr[9]}</p>
-    <div class="one"><p class="money">${summa3}£</p><i class="fas fa-wallet"></i></div>
+    <div class="one"><p class="money">£${summa3}</p><i class="fas fa-wallet"></i></div>
     </div>
     <div class="display-eachmonth">
     <p>${yearArr[8]}</p>
-    <div class="one"><p class="money">${summa4}£</p><i class="fas fa-wallet"></i></div>
+    <div class="one"><p class="money">£${summa4}</p><i class="fas fa-wallet"></i></div>
     </div>
     </div>`;
   } else if (monthNum === 1) {
@@ -695,3 +711,61 @@ async function percentageIncrease() {
 }
 
 percentageIncrease();
+
+// // This function fetches restaurant visited by month
+// async function getDataFromAPIByMonth(event) {
+//   const monthRestValue = event.target.value;
+//   console.log(monthRestValue);
+//   const responseQuery = await fetch(
+//     `http://localhost:3000/restaurants?month=${monthRestValue}`
+//   );
+//   dataQuery = await responseQuery.json();
+//   createVisitedMonthList(dataQuery);
+// }
+
+// // This displays the visited restaurants in a particular month
+// function createVisitedMonthList(dataQuery) {
+//   const data = dataQuery.payload;
+//   const body = document.body;
+//   // new elements are created to display the fetched restaurant.
+//   const calcBackground = document.createElement("div");
+//   const miniBackground = document.createElement("div");
+//   miniBackground.classList.add("minibg");
+//   calcBackground.classList.add("calcbackground");
+//   const monthHeading = document.createElement("h2");
+//   monthHeading.innerText = `Restaurants in ${getListByLocation.value} `;
+//   const ul = document.createElement("ul");
+//   ul.appendChild(locationheading);
+//   ul.classList.add("ul-location");
+//   miniBackground.appendChild(ul);
+//   data.forEach((item) => {
+//     const newDate = new Date(item.date);
+//     const day = newDate.getUTCDate();
+//     const month = newDate.getUTCMonth() + 1;
+//     const year = newDate.getUTCFullYear();
+//     item.date = `${day}/${month}/${year}`;
+//     console.log("date", newDate);
+//     console.log("hh", day);
+//     const div = document.createElement("div");
+//     div.classList.add("location-div");
+//     const li1 = document.createElement("li");
+//     li1.innerText = `${item.restaurant_name}`;
+//     div.appendChild(li1);
+//     const li2 = document.createElement("li");
+//     li2.innerText = `Date Visited: ${item.date}`;
+//     div.appendChild(li2);
+//     const li3 = document.createElement("li");
+//     li3.innerText = `Menu: ${item.menu}`;
+//     div.appendChild(li3);
+//     const li4 = document.createElement("li");
+//     li4.innerText = `Rating: ${item.restaurant_rating}`;
+//     div.appendChild(li4);
+//     ul.appendChild(div);
+//   });
+//   const docHeight = document.body.clientHeight;
+//   calcBackground.style.height = `${docHeight}px`;
+//   calcBackground.appendChild(miniBackground);
+//   body.appendChild(calcBackground);
+//   miniBackground.addEventListener("click", noremove);
+// }
+// visitedRest.addEventListener("change", getDataFromAPIByMonth);
