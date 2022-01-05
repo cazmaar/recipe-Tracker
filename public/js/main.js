@@ -13,8 +13,8 @@ const restaurantRating = document.querySelector("#restaurant-rating");
 const image1 = document.querySelector(".restaurant-image1");
 const visitedRest = document.querySelector(".visited-months");
 
-let image_tracker = "salmon";
 // this function changes the food image after a set time interval
+let image_tracker = "salmon";
 function change() {
   if (image_tracker === "salmon") {
     image1.src = "./images/jay-wennington-N_Y88TWmGwA-unsplash.jpg";
@@ -42,11 +42,13 @@ const yearArr = [
   "December",
 ];
 
-// fetches all the restaurant data from the API
+// gets all the restaurant data from the API
 async function getter() {
   const response = await fetch("http://localhost:3000/restaurants");
   const data = await response.json();
+  // This function sorts the restaurant data by ratings
   sortByRatings(data);
+  // This function sorts the restaurant data by date
   sortBydate(data);
 }
 
@@ -56,15 +58,17 @@ function sortByRatings(data) {
   arrayResponse.sort((a, b) => {
     return b.restaurant_rating - a.restaurant_rating;
   });
+  // This function gets the top5 restaurants from the sorted array.
   getTopRatedRestaurants(arrayResponse);
 }
 
 // This function selects the top 5 restaurants with the highest restaurant ratings and displays them.
 function getTopRatedRestaurants(sortedArray) {
+  // This filters out restaurants with a rating of 3 and above.
   const topRatedRestaurants = sortedArray.filter((item) => {
     return item.restaurant_rating >= 3;
   });
-
+  // this selects the top5 restaurants and displays it.
   topRatedRestaurants.slice(0, 5).forEach((item) => {
     const eachTopRestaurant = document.createElement("div");
     eachTopRestaurant.classList.add("eachList");
@@ -712,60 +716,61 @@ async function percentageIncrease() {
 
 percentageIncrease();
 
-// // This function fetches restaurant visited by month
-// async function getDataFromAPIByMonth(event) {
-//   const monthRestValue = event.target.value;
-//   console.log(monthRestValue);
-//   const responseQuery = await fetch(
-//     `http://localhost:3000/restaurants?month=${monthRestValue}`
-//   );
-//   dataQuery = await responseQuery.json();
-//   createVisitedMonthList(dataQuery);
-// }
+// This function fetches restaurant visited by month
+async function getDataFromAPIByMonth(event) {
+  const monthRestValue = event.target.value;
+  const responseQuery = await fetch(
+    `http://localhost:3000/restaurants?month=${monthRestValue}`
+  );
+  dataQuery = await responseQuery.json();
+  createVisitedMonthList(dataQuery);
+}
 
-// // This displays the visited restaurants in a particular month
-// function createVisitedMonthList(dataQuery) {
-//   const data = dataQuery.payload;
-//   const body = document.body;
-//   // new elements are created to display the fetched restaurant.
-//   const calcBackground = document.createElement("div");
-//   const miniBackground = document.createElement("div");
-//   miniBackground.classList.add("minibg");
-//   calcBackground.classList.add("calcbackground");
-//   const monthHeading = document.createElement("h2");
-//   monthHeading.innerText = `Restaurants in ${getListByLocation.value} `;
-//   const ul = document.createElement("ul");
-//   ul.appendChild(locationheading);
-//   ul.classList.add("ul-location");
-//   miniBackground.appendChild(ul);
-//   data.forEach((item) => {
-//     const newDate = new Date(item.date);
-//     const day = newDate.getUTCDate();
-//     const month = newDate.getUTCMonth() + 1;
-//     const year = newDate.getUTCFullYear();
-//     item.date = `${day}/${month}/${year}`;
-//     console.log("date", newDate);
-//     console.log("hh", day);
-//     const div = document.createElement("div");
-//     div.classList.add("location-div");
-//     const li1 = document.createElement("li");
-//     li1.innerText = `${item.restaurant_name}`;
-//     div.appendChild(li1);
-//     const li2 = document.createElement("li");
-//     li2.innerText = `Date Visited: ${item.date}`;
-//     div.appendChild(li2);
-//     const li3 = document.createElement("li");
-//     li3.innerText = `Menu: ${item.menu}`;
-//     div.appendChild(li3);
-//     const li4 = document.createElement("li");
-//     li4.innerText = `Rating: ${item.restaurant_rating}`;
-//     div.appendChild(li4);
-//     ul.appendChild(div);
-//   });
-//   const docHeight = document.body.clientHeight;
-//   calcBackground.style.height = `${docHeight}px`;
-//   calcBackground.appendChild(miniBackground);
-//   body.appendChild(calcBackground);
-//   miniBackground.addEventListener("click", noremove);
-// }
-// visitedRest.addEventListener("change", getDataFromAPIByMonth);
+// This displays the visited restaurants in a particular month
+function createVisitedMonthList(dataQuery) {
+  const data = dataQuery.payload;
+  console.log(data)
+  const body = document.body;
+  // new elements are created to display the fetched restaurant.
+  const calcBackground = document.createElement("div");
+  const miniBackground = document.createElement("div");
+  miniBackground.classList.add("minibg");
+  calcBackground.classList.add("calcbackground");
+  const monthHeading = document.createElement("h2");
+  monthHeading.innerText = `Restaurants  Visited in ${visitedRest.value} `;
+  const ul = document.createElement("ul");
+  ul.appendChild(monthHeading);
+  miniBackground.appendChild(ul);
+  ul.classList.add("ul-location");
+  data.forEach((item) => {
+    const newDate = new Date(item.date);
+    const day = newDate.getUTCDate();
+    const month = newDate.getUTCMonth() + 1;
+    const year = newDate.getUTCFullYear();
+    item.date = `${day}/${month}/${year}`;
+    console.log("date", newDate);
+    console.log("hh", day);
+    const div = document.createElement("div");
+    div.classList.add("location-div");
+    const li1 = document.createElement("li");
+    li1.innerText = `${item.restaurant_name}`;
+    div.appendChild(li1);
+    const li2 = document.createElement("li");
+    li2.innerText = `Date Visited: ${item.date}`;
+    div.appendChild(li2);
+    const li3 = document.createElement("li");
+    li3.innerText = `Menu: ${item.menu}`;
+    div.appendChild(li3);
+    const li4 = document.createElement("li");
+    li4.innerText = `Rating: ${item.restaurant_rating}`;
+    div.appendChild(li4);
+    ul.appendChild(div);
+  });
+  const docHeight = document.body.clientHeight;
+  calcBackground.style.height = `${docHeight}px`;
+  calcBackground.appendChild(miniBackground);
+  body.appendChild(calcBackground);
+  miniBackground.addEventListener("click", noremove);
+}
+
+visitedRest.addEventListener("change", getDataFromAPIByMonth);
