@@ -1,3 +1,4 @@
+// All html elements selected from the DOM
 const recentRestaurants = document.querySelector(".recentrestaurant-list");
 const topRestaurants = document.querySelector(".topratedrestaurant-list");
 const submitbutton = document.querySelector(".submit-button");
@@ -43,7 +44,7 @@ const yearArr = [
 ];
 
 // gets all the restaurant data from the API
-async function getter() {
+async function fetchAllRestaurants() {
   const response = await fetch("http://localhost:3000/restaurants");
   const data = await response.json();
   // This function sorts the restaurant data by ratings
@@ -100,6 +101,7 @@ function sortBydate(data) {
 // This function creates a new list of recently visited restaurants.
 function createRecentList(fetchedArray) {
   fetchedArray.slice(0, 5).forEach((item) => {
+    // this changes the format of the date fetched from database.
     const newDate = item.date;
     const day = newDate.getUTCDate();
     const month = newDate.getUTCMonth() + 1;
@@ -130,7 +132,7 @@ async function addRestaurantDetails() {
   const data = await response.json();
 }
 
-// This function gathers restaurants data inputed inputed to be sent into the database.
+// This function gathers restaurants ratings inputed inputed to be sent into the database.
 async function addRestaurantRatings() {
   const response = await fetch("http://localhost:3000/restaurants", {
     method: "POST",
@@ -142,11 +144,11 @@ async function addRestaurantRatings() {
 
 // This function gather form data to post to the details table.
 function gatherFormData() {
+  // this extracts the month from the date inputed so it could be sent to the database.
   const date = dateRest.value;
   const newDate = new Date(date);
   const monthEntered = newDate.getUTCMonth();
   const month = yearArr[monthEntered];
-  console.log(monthEntered);
   const nameV = nameRest.value;
   const location = locationRest.value;
   return {
@@ -210,21 +212,16 @@ function createRestMonthList(dataQuery) {
   miniBackground.addEventListener("click", noremove);
 }
 
-months.addEventListener("change", getDataFromAPIByQuery);
-submitbutton.addEventListener("click", addRestaurantDetails);
-submitbutton.addEventListener("click", addRestaurantRatings);
-
-// This function removes the created background
+// This function removes the created calcbackground
 function removeCalcBackground() {
   const calcbackground = document.querySelector(".calcbackground");
   document.body.removeChild(calcbackground);
 }
-document.body.addEventListener("click", removeCalcBackground);
 
+// this function prevents removal of calcbackground when you click on minibackground
 function noremove(event) {
   event.stopPropagation();
 }
-getter();
 
 // This function gets you list of restaurant in a particulart location.
 async function getDataFromAPIByLocation(event) {
@@ -257,8 +254,6 @@ function createRestLocationList(dataQuery) {
     const month = newDate.getUTCMonth() + 1;
     const year = newDate.getUTCFullYear();
     item.date = `${day}/${month}/${year}`;
-    console.log("date", newDate);
-    console.log("hh", day);
     const div = document.createElement("div");
     div.classList.add("location-div");
     const li1 = document.createElement("li");
@@ -281,9 +276,6 @@ function createRestLocationList(dataQuery) {
   body.appendChild(calcBackground);
   miniBackground.addEventListener("click", noremove);
 }
-
-getListByLocation.addEventListener("change", getDataFromAPIByLocation);
-console.log(getListByLocation.value);
 
 // This function gets you list of restaurants with a particular rating.
 async function getDataFromAPIByRating(event) {
@@ -332,8 +324,6 @@ function createRestRatingList(dataQuery) {
   body.appendChild(calcBackground);
   miniBackground.addEventListener("click", noremove);
 }
-
-restaurantRating.addEventListener("change", getDataFromAPIByRating);
 
 // // This function calculates the percentage increase of your expenses for the current month.
 async function percentageIncrease() {
@@ -714,8 +704,6 @@ async function percentageIncrease() {
   }
 }
 
-percentageIncrease();
-
 // This function fetches restaurant visited by month
 async function getDataFromAPIByMonth(event) {
   const monthRestValue = event.target.value;
@@ -729,7 +717,7 @@ async function getDataFromAPIByMonth(event) {
 // This displays the visited restaurants in a particular month
 function createVisitedMonthList(dataQuery) {
   const data = dataQuery.payload;
-  console.log(data)
+  console.log(data);
   const body = document.body;
   // new elements are created to display the fetched restaurant.
   const calcBackground = document.createElement("div");
@@ -773,4 +761,14 @@ function createVisitedMonthList(dataQuery) {
   miniBackground.addEventListener("click", noremove);
 }
 
+fetchAllRestaurants();
+percentageIncrease();
+
+// event listeners are added to this selected elements
+months.addEventListener("change", getDataFromAPIByQuery);
+submitbutton.addEventListener("click", addRestaurantDetails);
+submitbutton.addEventListener("click", addRestaurantRatings);
+document.body.addEventListener("click", removeCalcBackground);
 visitedRest.addEventListener("change", getDataFromAPIByMonth);
+restaurantRating.addEventListener("change", getDataFromAPIByRating);
+getListByLocation.addEventListener("change", getDataFromAPIByLocation);
