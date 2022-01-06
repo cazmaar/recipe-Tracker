@@ -210,12 +210,13 @@ function createRestMonthList(dataQuery) {
   calcBackground.appendChild(miniBackground);
   body.appendChild(calcBackground);
   miniBackground.addEventListener("click", noremove);
+  calcBackground.addEventListener("click", removeCalcBackground);
 }
 
 // This function removes the created calcbackground
 function removeCalcBackground() {
-  const calcbackground = document.querySelector(".calcbackground");
-  document.body.removeChild(calcbackground);
+  const calcbackGround = document.querySelector(".calcbackground");
+  document.body.removeChild(calcbackGround);
 }
 
 // this function prevents removal of calcbackground when you click on minibackground
@@ -275,6 +276,7 @@ function createRestLocationList(dataQuery) {
   calcBackground.appendChild(miniBackground);
   body.appendChild(calcBackground);
   miniBackground.addEventListener("click", noremove);
+  calcBackground.addEventListener("click", removeCalcBackground);
 }
 
 // This function gets you list of restaurants with a particular rating.
@@ -323,6 +325,7 @@ function createRestRatingList(dataQuery) {
   calcBackground.appendChild(miniBackground);
   body.appendChild(calcBackground);
   miniBackground.addEventListener("click", noremove);
+  calcBackground.addEventListener("click", removeCalcBackground);
 }
 
 // // This function calculates the percentage increase of your expenses for the current month.
@@ -759,6 +762,7 @@ function createVisitedMonthList(dataQuery) {
   calcBackground.appendChild(miniBackground);
   body.appendChild(calcBackground);
   miniBackground.addEventListener("click", noremove);
+  calcBackground.addEventListener("click", removeCalcBackground);
 }
 
 fetchAllRestaurants();
@@ -768,7 +772,6 @@ percentageIncrease();
 months.addEventListener("change", getDataFromAPIByQuery);
 submitbutton.addEventListener("click", addRestaurantDetails);
 submitbutton.addEventListener("click", addRestaurantRatings);
-document.body.addEventListener("click", removeCalcBackground);
 visitedRest.addEventListener("change", getDataFromAPIByMonth);
 restaurantRating.addEventListener("change", getDataFromAPIByRating);
 getListByLocation.addEventListener("change", getDataFromAPIByLocation);
