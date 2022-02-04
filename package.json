@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "nodemon -r dotenv/config.js ./bin/www.js",
+    "start": "node ./bin/www.js",
     "dev": " nodemon -r dotenv/config ./bin/www.js",
     "createRatingTable": "node -r dotenv/config.js ./db/scripts/createRatingsAndMenuTable.js",
     "createRestaurantDetails": "node -r dotenv/config.js ./db/scripts/createRestaurantDetails.js",
