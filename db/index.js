@@ -3,11 +3,12 @@ import * as db from "../config.js";
 
 // database connection created with the use of pool
 const pool = new pg.Pool({
-  user: db.user,
-  host: db.host,
-  database: db.database,
-  password: db.password,
-  port: db.port,
+  // user: db.user,
+  // host: db.host,
+  // database: db.database,
+  // password: db.password,
+  // port: db.port,
+  connectionString:process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
 
