@@ -228,7 +228,7 @@ function noremove(event) {
 async function getDataFromAPIByLocation(event) {
   const getListByLocationValue = event.target.value;
   const responseQuery = await fetch(
-    `http://localhost:3000/restaurants?location=${getListByLocationValue}`
+    `https://restaurant-track1.herokuapp.com/restaurants?location=${getListByLocationValue}`
   );
   dataQuery = await responseQuery.json();
   createRestLocationList(dataQuery);
@@ -284,7 +284,7 @@ async function getDataFromAPIByRating(event) {
   const restaurantRatingValue = event.target.value;
   console.log(restaurantRatingValue);
   const responseQuery = await fetch(
-    `http://localhost:3000/restaurants?restaurant_rating=${restaurantRatingValue}`
+    `https://restaurant-track1.herokuapp.com/restaurants?restaurant_rating=${restaurantRatingValue}`
   );
   dataQuery = await responseQuery.json();
   console.log(dataQuery);
@@ -336,7 +336,7 @@ async function percentageIncrease() {
   if (monthNum === 0) {
     const spentArr = [];
     const responseQuery = await fetch(
-      `http://localhost:3000/restaurants?month=${month}`
+      `https://restaurant-track1.herokuapp.com/restaurants?month=${month}`
     );
     dataQuery = await responseQuery.json();
 
@@ -344,7 +344,7 @@ async function percentageIncrease() {
     for (let i = 11; i >= 8; i--) {
       const newMonth = yearArr[monthNum + i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       dataQuery = await responseQuery.json();
       spentArr.push(dataQuery);
@@ -407,7 +407,7 @@ async function percentageIncrease() {
   } else if (monthNum === 1) {
     const spentArr = [];
     const responseQuery = await fetch(
-      `http://localhost:3000/restaurants?month=${month}`
+      `https://restaurant-track1.herokuapp.com/restaurants?month=${month}`
     );
     const dataQuery = await responseQuery.json();
     spentArr.push(dataQuery);
@@ -415,7 +415,7 @@ async function percentageIncrease() {
     const newMonth = yearArr[monthNum - 1];
     console.log(newMonth);
     const responseQuery1 = await fetch(
-      `http://localhost:3000/restaurants?month=${newMonth}`
+      `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
     );
     const dataQuery1 = await responseQuery1.json();
     spentArr.push(dataQuery1);
@@ -423,7 +423,7 @@ async function percentageIncrease() {
     for (let i = 11; i >= 9; i--) {
       const newMonth1 = yearArr[i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth1}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth1}`
       );
       const dataQuery = await responseQuery.json();
 
@@ -492,7 +492,7 @@ async function percentageIncrease() {
     for (let i = monthNum; i >= monthNum - 2; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
 
@@ -501,7 +501,7 @@ async function percentageIncrease() {
     for (let i = 11; i >= 10; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
       spentArr.push(dataQuery);
@@ -566,7 +566,7 @@ async function percentageIncrease() {
     for (let i = monthNum; i >= monthNum - 3; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
       spentArr.push(dataQuery);
@@ -574,7 +574,7 @@ async function percentageIncrease() {
     for (let i = 11; i >= 11; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
       spentArr.push(dataQuery);
@@ -641,7 +641,7 @@ async function percentageIncrease() {
     for (let i = monthNum; i >= monthNum - 4; i--) {
       const newMonth = yearArr[i];
       const responseQuery = await fetch(
-        `http://localhost:3000/restaurants?month=${newMonth}`
+        `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
       // console.log(dataQuery);
@@ -711,7 +711,7 @@ async function percentageIncrease() {
 async function getDataFromAPIByMonth(event) {
   const monthRestValue = event.target.value;
   const responseQuery = await fetch(
-    `http://localhost:3000/restaurants?month=${monthRestValue}`
+    `https://restaurant-track1.herokuapp.com/restaurants?month=${monthRestValue}`
   );
   dataQuery = await responseQuery.json();
   createVisitedMonthList(dataQuery);
