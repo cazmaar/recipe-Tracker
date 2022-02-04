@@ -45,7 +45,9 @@ const yearArr = [
 
 // gets all the restaurant data from the API
 async function fetchAllRestaurants() {
-  const response = await fetch("http://localhost:3000/restaurants");
+  const response = await fetch(
+    "https://restaurant-track1.herokuapp.com/restaurants"
+  );
   const data = await response.json();
   // This function sorts the restaurant data by ratings
   sortByRatings(data);
@@ -124,21 +126,27 @@ function createRecentList(fetchedArray) {
 
 // This function gathers restaurants data inputed inputed to be sent into the database.
 async function addRestaurantDetails() {
-  const response = await fetch("http://localhost:3000/restaurants", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(gatherFormData()),
-  });
+  const response = await fetch(
+    "https://restaurant-track1.herokuapp.com/restaurants",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(gatherFormData())
+    }
+  );
   const data = await response.json();
 }
 
 // This function gathers restaurants ratings inputed inputed to be sent into the database.
 async function addRestaurantRatings() {
-  const response = await fetch("http://localhost:3000/restaurants", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(gatherFormRatings()),
-  });
+  const response = await fetch(
+    "https://restaurant-track1.herokuapp.com/restaurants",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(gatherFormRatings())
+    }
+  );
   const data = await response.json();
 }
 
@@ -171,7 +179,7 @@ function gatherFormRatings() {
 async function getDataFromAPIByQuery(event) {
   const monthValue = event.target.value;
   const responseQuery = await fetch(
-    `http://localhost:3000/restaurants?month=${monthValue}`
+    `https://restaurant-track1.herokuapp.com/restaurants?month=${monthValue}`
   );
   dataQuery = await responseQuery.json();
   createRestMonthList(dataQuery);
@@ -644,7 +652,6 @@ async function percentageIncrease() {
         `https://restaurant-track1.herokuapp.com/restaurants?month=${newMonth}`
       );
       const dataQuery = await responseQuery.json();
-      // console.log(dataQuery);
       spentArr.push(dataQuery);
     }
 
