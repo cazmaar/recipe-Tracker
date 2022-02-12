@@ -13,6 +13,7 @@
   --appnamecolor: rgba(0, 100, 0, 1);
 }
 
+/* screen size <640px */
 .nav-bar {
   background-color: var(--primarycolor);
   position: fixed;
@@ -31,25 +32,28 @@
 
 .left-nav {
   display: flex;
+  padding-left: 1rem;
 }
 
 #item1 {
   padding: 0.2rem;
-  border-radius: 20%;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 #item2 {
   padding: 0.2rem;
-  font-size: 1.2rem;
+  border-radius: 20%;
+  font-size: 1rem;
 }
 
 .right-nav {
   display: flex;
+  padding-right: 1rem;
+  align-items: center;
 }
-
 #item3 {
   padding: 0.2rem;
+  padding-right: 0.5rem;
   font-size: 1.2rem;
 }
 
@@ -58,29 +62,65 @@
   font-size: 1.2rem;
 }
 
+#item5 {
+  padding: 0.2rem;
+  font-size: 1.2rem;
+}
+
 .new-restaurant-images {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .restaurant-image1 {
   width: 100%;
+  height: 13rem;
   margin-bottom: 0;
 }
 
 .recentandtoprated {
   display: flex;
   background-color: var(--secondarycolor);
-  height: 8rem;
-  justify-content: space-between;
+  height: 10rem;
+  font-size: 0.8rem;
 }
 
 .recentandtop {
   text-align: center;
-  padding-right: 4rem;
+
   border: 2px solid var(--secondarycolor);
   font-family: "Oswald", sans-serif;
+  overflow-y: scroll;
+  width: 100%;
+}
+.recentandtop-heading {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+.recentandtop::-webkit-scrollbar {
+  width: 0px;
 }
 
+.topratedrestaurant-list {
+  list-style: none;
+}
+.display-eachmonth {
+  padding: 0.4rem;
+  color: var(--appnamecolor);
+}
+
+.display-moneysection {
+  display: flex;
+}
+
+.percentage-text {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 .text1 {
   background-color: var(--primarycolor);
   display: flex;
@@ -90,17 +130,20 @@
 
 .input-fieldsection {
   background-color: var(--secondarycolor);
+  width: 100%;
 }
 
 .inputfield-heading {
   text-align: center;
-  margin-top: 2rem;
+  font-size: large;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .inputfield-box {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 0.2rem;
+  padding-left: 1rem;
 }
 
 .inputfield {
@@ -108,9 +151,154 @@
   margin-bottom: 1rem;
 }
 
-@media screen and (min-width: 667px) {
+.button-sect {
+  display: block;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: 50%;
+  padding-bottom: 0.5rem;
+}
+
+.calc-heading {
+  font-size: medium;
+  text-align: center;
+  padding: 0.7rem;
+}
+
+.spendingPatternEach {
+  padding-bottom: 0.8rem;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 5%;
+  color: var(--primarycolor);
+  background-color: black;
+  color: var(--primarycolor);
+  align-items: center;
+}
+
+#appname {
+  display: none;
+}
+
+#appnamewhite-text {
+  color: var(--primarycolor);
+}
+
+.applesect {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+}
+
+.applepay-logo {
+  margin-right: 1rem;
+  margin-bottom: 4rem;
+}
+
+.appleText {
+  display: none;
+}
+
+.googleplay-sect {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.googleplay-logo {
+  margin-right: 1rem;
+  margin-bottom: 4rem;
+}
+
+.googleplay-text {
+  display: none;
+}
+
+.footer-text {
+  margin-bottom: 2.5rem;
+}
+.footer-innertext {
+  margin-top: 1rem;
+  font-size: small;
+}
+
+.socialmedia {
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.eachsocial {
+  margin-right: 0.8rem;
+}
+
+  .calcbackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .minibg {
+    min-width: 40%;
+    min-height: 300px;
+    max-height: 50vh;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    position: fixed;
+    background-color: var(--primarycolor);
+    border: 2px solid black;
+    overflow-y: scroll;
+    margin: 2px;
+  }
+
+  .minibg::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .ul-location {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    color: black;
+    list-style: none;
+  }
+
+  .location-div {
+    margin-top: 1rem;
+  }
+
+
+.one {
+  display: flex;
+  justify-content: center;
+}
+.money {
+  margin-right: 0.5rem;
+}
+.display-moneysection {
+  display: flex;
+  justify-content: center;
+}
+
+.display-eachmonth {
+  color: var(--appnamecolor);
+}
+
+
+/* screen size >= 641px */
+@media only screen and (min-width: 641px) {
   .nav-bar-section {
-    height: 4rem;
+    height: 5rem;
     align-items: center;
     border-bottom: 2px solid black;
   }
@@ -119,30 +307,79 @@
     margin-left: 4rem;
   }
 
+  .right-nav {
+    display: flex;
+    padding-right: 1rem;
+    align-items: center;
+    margin-right: 4rem;
+  }
+
   #item1 {
     padding: 0.2rem;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
+    font-size: xx-large;
   }
 
   #item2 {
     padding: 0.2rem;
+    margin-right: 1rem;
+    font-size: xx-large;
   }
 
-  .right-nav {
-    margin-right: 4rem;
-  }
   #item3 {
     padding: 0.2rem;
-    margin-right: 1rem;
+    padding-right: 0.5rem;
+    font-size: xx-large;
+
+    margin-right: 1.5rem;
   }
 
   #item4 {
     padding: 0.2rem;
+    font-size: xx-large;
+
+    margin-right: 1.5rem;
   }
+
+  #item5 {
+    padding: 0.2rem;
+    font-size: xx-large;
+  }
+
+  .left-nav {
+    display: flex;
+    padding-left: 1rem;
+  }
+
+  .new-restaurant-images {
+    width: 100%;
+    margin-bottom: 0;
+    height: 13rem;
+  }
+
+  .restaurant-image1 {
+    width: 100%;
+    height: 25rem;
+    margin-bottom: 0;
+  }
+
   .recentandtoprated {
-    font-size: 0.8rem;
-    height: 12rem;
-    justify-content: space-between;
+    display: flex;
+    margin-top: 12rem;
+    background-color: var(--secondarycolor);
+    height: 16rem;
+    font-size: 1rem;
+  }
+  .recentandtop-heading {
+    font-size: large;
+    font-weight: bolder;
+  }
+
+  .topratedrestaurant-list {
+    list-style: none;
+  }
+  .recentrestaurant-list {
+    list-style: none;
   }
 
   .recentandtop {
@@ -151,13 +388,26 @@
     padding-left: 4rem;
   }
 
-  .text1 {
-    text-align: center;
-    height: 7rem;
-    padding-top: 1rem;
+  .display-eachmonth {
+    padding: 1.5rem;
+    color: var(--appnamecolor);
   }
+
   .percentage-text {
-    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .input-fieldsection {
+    height: 23rem;
+  }
+
+  .text1 {
+    background-color: var(--primarycolor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .input-fieldsection {
@@ -166,7 +416,7 @@
   }
 
   .inputfield-heading {
-    margin-top: 2.5rem;
+    font-size: x-large;
   }
 
   .inputfield-box {
@@ -183,109 +433,147 @@
     font-size: 1.5rem;
   }
 
-  div .submit-button {
-    width: 5.5rem;
-    height: 2rem;
+  .button-sect {
+    display: block;
     display: flex;
-    margin-left: 15rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    justify-content: center;
+    width: 100%;
+    margin-left: 35%;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .submit-button {
+    width: 5rem;
+    height: 2rem;
+  }
+
+  .expense-section {
+    height: 19rem;
+  }
+
+  .calc-heading {
     text-align: center;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .nav-bar-section {
-    height: 4rem;
-    align-items: center;
-    border-bottom: 2px solid black;
+    padding: 2rem;
+    font-size: x-large;
   }
 
-  .left-nav {
-    margin-left: 4rem;
+  .calc-section {
+    display: flex;
+    justify-content: space-evenly;
   }
 
-  #item1 {
-    padding: 0.2rem;
-    margin-right: 1rem;
+  #firstcalc-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
-
-  #item2 {
-    padding: 0.2rem;
-  }
-
-  .right-nav {
-    margin-right: 4rem;
-  }
-  #item3 {
-    padding: 0.2rem;
-    margin-right: 1rem;
-  }
-
-  #item4 {
-    padding: 0.2rem;
-  }
-  .recentandtoprated {
-    font-size: 0.8rem;
-    height: 12rem;
+  #secondcalc-section {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
   }
 
-  .recentandtop {
-    text-align: center;
-    border: 2px solid var(--secondarycolor);
-    padding-left: 4rem;
+  .spendingPatternEach {
+    padding-bottom: 3rem;
+  }
+  .header {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
   }
 
-  .text1 {
-    text-align: center;
-    height: 7rem;
-    padding-top: 1rem;
-  }
-  .percentage-text {
-    margin-bottom: 1.5rem;
-  }
-
-  .input-fieldsection {
-    background-color: var(--secondarycolor);
-
-    height: 25rem;
-  }
-
-  .inputfield-heading {
-    margin-top: 2.5rem;
-  }
-
-  .inputfield-box {
-    margin-left: 15rem;
-  }
-
-  .inputfield {
-    width: 15rem;
-    height: 2rem;
-    font-size: 1.5rem;
-  }
-
-  .inputlabel {
-    font-size: 1.5rem;
-  }
-
-  div .submit-button {
-    width: 5.5rem;
-    height: 2rem;
+  footer {
     display: flex;
-    margin-left: 15rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    justify-content: space-evenly;
+    margin-top: 4rem;
+    padding: 4rem;
+    background-color: black;
+    height: 5%;
+    width: 100%;
+    color: var(--primarycolor);
+    margin-bottom: 1rem;
+  }
+
+  #appname {
+    display: inline;
+    color: var(--appnamecolor);
+    font-family: "Oswald", sans-serif;
+    font-size: 2rem;
+    padding-right: 1.5rem;
+    padding-left: 0.1rem;
+    height: 15rem;
+  }
+
+  #appnamewhite-text {
+    color: var(--primarycolor);
+  }
+
+  .applesect {
+    display: flex;
+    border: 2px solid var(--primarycolor);
+    border-radius: 0.5rem;
+    height: 3.5rem;
+    align-items: center;
+    padding: 2.5rem;
+    margin-right: 2rem;
+  }
+
+  .applepay-logo {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .appleText {
+    display: inline;
+  }
+
+  .googleplay-sect {
+    display: flex;
+    border: 2px solid var(--primarycolor);
+    border-radius: 0.5rem;
+    height: 3.5rem;
+    align-items: center;
+    padding: 2.5rem;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .googleplay-text {
+    display: inline;
+  }
+
+  .googleplay-logo {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .socialmedia {
+    display: flex;
+  }
+
+  .eachsocial {
+    margin-right: 0.8rem;
+  }
+
+  .footer-text {
+    margin-left: 3rem;
     font-size: 1.5rem;
-    text-align: center;
+  }
+
+  .footer-innertext {
+    margin-top: 1rem;
+       font-size: 1rem;
+  }
+
+  .socialmedia {
+    margin-left: 3rem;
+    font-size: 1.5rem;
   }
 }
 
-@media screen and (min-width: 1106px) {
+@media screen and (min-width: 1008px) {
   .nav-bar-section {
-    height: 4rem;
+    height: 5rem;
     align-items: center;
   }
 
@@ -321,39 +609,23 @@
     height: 40rem;
   }
   .recentandtoprated {
-    font-size: 0.8rem;
-    height: 30rem;
-    justify-content: space-evenly;
-    align-items: center;
+  
+    margin-top:27rem;
+    height: 22rem;
+
   }
 
-  .recentandtop {
-    text-align: center;
-    border-radius: 2%;
-    height: 20rem;
-    overflow-y: scroll;
-  }
 
-  .recentandtop::-webkit-scrollbar {
-    width: 0px;
-  }
+  
 
   .eachList {
     margin-bottom: 1rem;
     font-weight: 800;
   }
 
-  .topratedrestaurant-list {
-    list-style: none;
-    margin-top: 1.5rem;
-    font-size: 1rem;
-  }
 
-  .recentrestaurant-list {
-    list-style: none;
-    margin-top: 1.5rem;
-    font-size: 1rem;
-  }
+
+
 
   .recentandtop-heading {
     font-size: 1.5rem;
@@ -363,12 +635,8 @@
     height: 8rem;
     padding-top: 1rem;
   }
-  .percentage-text {
-    margin-bottom: 1.5rem;
-  }
 
   .input-fieldsection {
-    background-color: var(--secondarycolor);
     height: 25rem;
   }
 
@@ -389,19 +657,25 @@
   }
 
   .inputlabel {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 600;
   }
 
-  div .submit-button {
-    width: 5.5rem;
-    height: 2rem;
+   .button-sect {
+    display: block;
     display: flex;
-    margin-left: 25rem;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin-left: 20%;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+
+
+ 
+ .submit-button {
+    width: 5rem;
+    height: 2rem;
   }
 
   .calc-heading {
@@ -525,14 +799,6 @@
     width: 0px;
   }
 
-  .ul-spent {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-top: 2rem;
-    color: black;
-  }
-
   .ul-location {
     display: flex;
     text-align: center;
@@ -560,6 +826,5 @@
 }
 
 .display-eachmonth {
-  margin-left: 1rem;
   color: var(--appnamecolor);
 }

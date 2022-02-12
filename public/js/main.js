@@ -376,7 +376,8 @@ async function percentageIncrease() {
     const summa3 = sumMonth4.reduce((a, b) => a + b);
     sumMonth5 = [];
     february.forEach((item) => sumMonth5.push(item.amount_spent));
-    const summa4 = sumMonth5.reduce((a, b) => a + b);
+    const summa4 = sumMonth5.reduce((a, b) =>
+     a + b);
     const difference = summa - summa1;
     if (difference < 0) {
       const percentageIncrease = ((difference * -1) / summa1) * 100;

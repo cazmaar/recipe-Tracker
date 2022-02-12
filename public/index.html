@@ -15,13 +15,13 @@
     <nav class="nav-bar">
       <ul class="nav-bar-section">
         <div class="left-nav">
-          <li id="item2" class="nav-items">KAZAPP</li>
-          <li id="item1" class="nav-items"><span>Home</span></li>
+          <li id="item1" class="nav-items">KAZAPP</li>
+          <li id="item2" class="nav-items"><span>Home</span></li>
         </div>
         <div class="right-nav">
-          <li id="item5"><i class="far fa-user-circle"></i></li>
+          <li id="item3"><i class="far fa-user-circle"></i></li>
           <li id="item4" class="nav-items">kazeem</li>
-          <li id="item3" class="nav-items">
+          <li id="item5" class="nav-items">
             <i class="fas fa-caret-down"></i>
           </li>
         </div>
@@ -36,7 +36,7 @@
     </div>
     <article class="recentandtoprated">
       <div class="recentandtop" id="recent">
-        <h1 class="recentandtop-heading">Your most recent restaurants</h1>
+        <h1 class="recentandtop-heading"> RECENT RESTAURANTS</h1>
         <ul class="recentrestaurant-list"></ul>
       </div>
       <div
@@ -44,7 +44,7 @@
         id="top
       "
       >
-        <h1 class="recentandtop-heading">Your Top rated restaurants</h1>
+        <h1 class="recentandtop-heading">TOP RATED RESTAURANTS</h1>
         <ul class="topratedrestaurant-list"></ul>
       </div>
     </article>
@@ -52,7 +52,7 @@
       <p class="percentage-text"></p>
 
       <div>
-        <p class="month1">ccc</p>
+        <p class="month1">..Loading</p>
       </div>
     </div>
 
@@ -109,22 +109,23 @@
             min="1"
             max="5"
         /></label>
-        <div>
+        <div class="button-sect">
           <button class="submit-button">Submit</button>
         </div>
       </form>
     </div>
-    <h1 class="calc-heading">Your Spending Pattern</h1>
+    <div class="expense-section">
+    <h1 class="calc-heading">YOUR SPENDING PATTERN</h1>
     <div class="calc-section">
       <div class="calc-section1" id="firstcalc-section">
-        <div class="spent-month">
+        <div class="spendingPatternEach">
           <p class="header">
             Get to know how much you spent in a particular month
           </p>
           <div class="months">
-            <label for="months">Choose a month:</label>
+            <label for="months" class="search-field">Choose a month:</label>
             <select name="months" id="months">
-              <option value="null" >Select a month</option>
+              <option value="null">Select a month</option>
               <option value="january">January 2021</option>
               <option value="February">February 2021</option>
               <option value="March">March 2021</option>
@@ -142,7 +143,7 @@
           </div>
         </div>
 
-        <div class="restaurant-bylocation">
+        <div class="spendingPatternEach">
           <p class="header">Get list of restaurants by location</p>
           <label for="restaurantlocation">Input the location you want:</label>
           <input
@@ -152,8 +153,8 @@
           />
         </div>
       </div>
-      <div class="calc-section1" id="secondcalc-section">
-        <div class="visitedmonths">
+      <div class="calc-section1 " id="secondcalc-section">
+        <div class="visitedmonths spendingPatternEach">
           <p class="header">
             You can search for all restaurants visited in a month.
           </p>
@@ -175,7 +176,7 @@
           </select>
         </div>
 
-        <div class="restaurant-rating">
+        <div class="restaurant-rating spendingPatternEach">
           <p class="header">Get list of restaurant with a particular rating</p>
           <label for="restaurant-rating">Choose a rating:</label>
           <select name="rating" id="restaurant-rating">
@@ -189,6 +190,7 @@
         </div>
       </div>
     </div>
+    </div>
     <footer class="main-footer">
       <div class="appname-sect">
         <p id="appname"><span id="appnamewhite-text">KAZ</span>APP</p>
@@ -196,7 +198,7 @@
       <div class="applesect">
         <div class="applepay-logo"><i class="fab fa-apple"></i></div>
         <div class="applepay-text">
-          <p>
+          <p class="appleText">
             download on the <br />
             Apple Store
           </p>
@@ -211,7 +213,7 @@
           </p>
         </div>
       </div>
-      <div footer-text>
+      <div class="footer-text">
         <p class="footer-innertext">Get Help</p>
         <p class="footer-innertext">Read Our Blog</p>
         <p class="footer-innertext">About KAZAPP</p>
