@@ -1,16 +1,12 @@
 import pg from "pg";
-import * as db from "../config.js";
-
+import { dbTest, dbProd, Env } from "../config.js";
 // database connection created with the use of pool
-const pool = new pg.Pool({
-  // user: db.user,
-  // host: db.host,
-  // database: db.database,
-  // password: db.password,
-  // port: db.port,
-  connectionString:process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
-});
+let enviroment = "";
+Env === "test" ? (enviroment = dbTest) : (enviroment= dbProd);
+const pool = new pg.Pool(enviroment);
+
+
+
 
 // function created to query the database
 export default async function query(text, params) {

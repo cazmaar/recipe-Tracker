@@ -7,11 +7,11 @@
     "start": "node ./bin/www.js",
     "dev": " nodemon -r dotenv/config ./bin/www.js",
     "createRatingTable": "node -r dotenv/config.js ./db/scripts/createRatingsAndMenuTable.js",
-    "createRestaurantDetails": "node -r dotenv/config.js ./db/scripts/createRestaurantDetails.js",
+    "createRestaurantDetails": "node -r dotenv/config.js ./db/index.js",
     "populatecreateRestaurantDetails": "node -r dotenv/config.js ./db/scripts/populateCreateRestaurantDetails.js",
     "populateRestaurantRatings": "node -r dotenv/config.js ./db/scripts/populateCreateRatings.js",
     "fetch": "node -r dotenv/config.js ./models/restaurants.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node -r dotenv/config.js  --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -30,9 +30,6 @@
     "nodemon": "^2.0.15"
   },
   "jest": {
-    "testEnvironment": "node",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ]
+    "testEnvironment": "node"
   }
 }
