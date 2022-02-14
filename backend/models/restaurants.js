@@ -78,6 +78,7 @@ export async function getRestaurantsById(id) {
     `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings WHERE id = $1`,
     [id]
   );
+  console.log(res.rows)
   return res.rows;
 }
 
