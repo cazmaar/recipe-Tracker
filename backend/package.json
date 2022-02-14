@@ -7,7 +7,7 @@
     "start": "node ./bin/www.js",
     "dev": " nodemon -r dotenv/config ./bin/www.js",
     "createRatingTable": "node -r dotenv/config.js ./db/scripts/createRatingsAndMenuTable.js",
-    "createRestaurantDetails": "node -r dotenv/config.js ./db/index.js",
+    "createRestaurantDetails": "node -r dotenv/config.js ./db/scripts/createRestaurantDetails.js",
     "populatecreateRestaurantDetails": "node -r dotenv/config.js ./db/scripts/populateCreateRestaurantDetails.js",
     "populateRestaurantRatings": "node -r dotenv/config.js ./db/scripts/populateCreateRatings.js",
     "fetch": "node -r dotenv/config.js ./models/restaurants.js",
