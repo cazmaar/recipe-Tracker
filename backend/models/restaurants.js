@@ -3,11 +3,11 @@ import moment from "moment";
 
 // function to get all restaurants in the database
 export async function getAllRestaurants() {
-  const res = await query(
-    `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings`
-  );
-  const response = res.rows;
-  return response;
+  // const res = await query(
+  //   `SELECT * FROM restaurants_details JOIN restaurants_ratings ON id = id_ratings`
+  // );
+  // const response = res.rows;
+  return 1;
 }
 
 // This function get information from the database based on the query given.
