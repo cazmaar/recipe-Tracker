@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node ./bin/www.js",
+    "start": "node -r dotenv/config.js ./bin/www.js",
     "dev": " nodemon -r dotenv/config ./bin/www.js",
     "createRatingTable": "node -r dotenv/config.js ./db/scripts/createRatingsAndMenuTable.js",
     "createRestaurantDetails": "node -r dotenv/config.js ./db/scripts/createRestaurantDetails.js",
@@ -29,5 +29,4 @@
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
-
 }
