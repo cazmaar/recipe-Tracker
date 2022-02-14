@@ -66,7 +66,7 @@ router.get("/:id", async function (req, res) {
   const { id } = req.params;
 
   // The id is entered into the getRestaurantsById function.
-  const restaurantById = await getRestaurantsById();
+  const restaurantById = await getRestaurantsById(id);
 
   // A response is sent based on what was requested.
   res.json({
