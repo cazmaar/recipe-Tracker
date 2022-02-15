@@ -34,12 +34,19 @@ describe("Check to see if the routes work", () => {
       expect(user).toEqual(expectedArray);
     });
   });
-  // test("should return the specific json if route works", async () => {
-  //   const res = await request(app).get("/restaurants/2");
-  //   const expected = {success:true, expectedArray}
-  //   const actual = res.body;
-  //   expect(actual).toEqual(expected);
+  test("should return the specific json if route works", async () => {
+    const res = await request(app).get("/restaurants/2");
+    const expected = { success: true, payload: [expectedArray] };
+    const actual = res.body;
+    expect(actual).toEqual(expected);
+  });
+
+   test("should return the specific json if route works", async () => {
+     const res = await request(app).get("/restaurants/2");
+     const expected = { success: true, payload: [expectedArray] };
+     const actual = res.body;
+     expect(actual).toEqual(expected);
+   });
 
 
-  // });
 });
